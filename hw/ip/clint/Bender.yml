@@ -16,6 +16,8 @@ sources:
 - src/clint_reg_top.sv
 # Level 2:
 - src/clint.sv
+# Level 3:
+- synth/clint_wrapper.sv
 
 - target: test
   files:
