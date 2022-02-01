@@ -2680,6 +2680,8 @@ module clint_reg_top #(
   logic mtime_high_we;
   logic [31:0] msip_clr_wd;
   logic msip_clr_we;
+  logic msip_bcast_wd;
+  logic msip_bcast_we;
 
   // Register instances
 
@@ -25929,9 +25931,25 @@ module clint_reg_top #(
   );
 
 
+  // R[msip_bcast]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (1)
+  ) u_msip_bcast (
+    .re     (1'b0),
+    .we     (msip_bcast_we),
+    .wd     (msip_bcast_wd),
+    .d      ('0),
+    .qre    (),
+    .qe     (reg2hw.msip_bcast.qe),
+    .q      (reg2hw.msip_bcast.q ),
+    .qs     ()
+  );
 
 
-  logic [591:0] addr_hit;
+
+
+  logic [592:0] addr_hit;
   always_comb begin
     addr_hit = '0;
     addr_hit[  0] = (reg_addr == CLINT_MSIP_0_OFFSET);
@@ -26526,6 +26544,7 @@ module clint_reg_top #(
     addr_hit[589] = (reg_addr == CLINT_MTIME_LOW_OFFSET);
     addr_hit[590] = (reg_addr == CLINT_MTIME_HIGH_OFFSET);
     addr_hit[591] = (reg_addr == CLINT_MSIP_CLR_OFFSET);
+    addr_hit[592] = (reg_addr == CLINT_MSIP_BCAST_OFFSET);
   end
 
   assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
@@ -27124,7 +27143,8 @@ module clint_reg_top #(
                (addr_hit[588] & (|(CLINT_PERMIT[588] & ~reg_be))) |
                (addr_hit[589] & (|(CLINT_PERMIT[589] & ~reg_be))) |
                (addr_hit[590] & (|(CLINT_PERMIT[590] & ~reg_be))) |
-               (addr_hit[591] & (|(CLINT_PERMIT[591] & ~reg_be)))));
+               (addr_hit[591] & (|(CLINT_PERMIT[591] & ~reg_be))) |
+               (addr_hit[592] & (|(CLINT_PERMIT[592] & ~reg_be)))));
   end
 
   assign msip_0_p_0_we = addr_hit[0] & reg_we & !reg_error;
@@ -29739,6 +29759,9 @@ module clint_reg_top #(
 
   assign msip_clr_we = addr_hit[591] & reg_we & !reg_error;
   assign msip_clr_wd = reg_wdata[31:0];
+
+  assign msip_bcast_we = addr_hit[592] & reg_we & !reg_error;
+  assign msip_bcast_wd = reg_wdata[0];
 
   // Read data return
   always_comb begin
@@ -32389,6 +32412,10 @@ module clint_reg_top #(
 
       addr_hit[591]: begin
         reg_rdata_next[31:0] = '0;
+      end
+
+      addr_hit[592]: begin
+        reg_rdata_next[0] = '0;
       end
 
       default: begin
