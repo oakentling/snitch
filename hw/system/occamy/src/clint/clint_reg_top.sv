@@ -2680,7 +2680,7 @@ module clint_reg_top #(
   logic mtime_high_we;
   logic [31:0] msip_clr_wd;
   logic msip_clr_we;
-  logic msip_bcast_wd;
+  logic [31:0] msip_bcast_wd;
   logic msip_bcast_we;
 
   // Register instances
@@ -25934,7 +25934,7 @@ module clint_reg_top #(
   // R[msip_bcast]: V(True)
 
   prim_subreg_ext #(
-    .DW    (1)
+    .DW    (32)
   ) u_msip_bcast (
     .re     (1'b0),
     .we     (msip_bcast_we),
@@ -29761,7 +29761,7 @@ module clint_reg_top #(
   assign msip_clr_wd = reg_wdata[31:0];
 
   assign msip_bcast_we = addr_hit[592] & reg_we & !reg_error;
-  assign msip_bcast_wd = reg_wdata[0];
+  assign msip_bcast_wd = reg_wdata[31:0];
 
   // Read data return
   always_comb begin
@@ -32415,7 +32415,7 @@ module clint_reg_top #(
       end
 
       addr_hit[592]: begin
-        reg_rdata_next[0] = '0;
+        reg_rdata_next[31:0] = '0;
       end
 
       default: begin
