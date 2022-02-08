@@ -2678,6 +2678,8 @@ module clint_reg_top #(
   logic [31:0] mtime_high_qs;
   logic [31:0] mtime_high_wd;
   logic mtime_high_we;
+  logic [31:0] msip_clr_wd;
+  logic msip_clr_we;
 
   // Register instances
 
@@ -2698,8 +2700,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_0_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[0].de),
+    .d      (hw2reg.msip[0].d ),
 
     // to internal hardware
     .qe     (),
@@ -2724,8 +2726,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_1_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[1].de),
+    .d      (hw2reg.msip[1].d ),
 
     // to internal hardware
     .qe     (),
@@ -2750,8 +2752,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_2_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[2].de),
+    .d      (hw2reg.msip[2].d ),
 
     // to internal hardware
     .qe     (),
@@ -2776,8 +2778,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_3_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[3].de),
+    .d      (hw2reg.msip[3].d ),
 
     // to internal hardware
     .qe     (),
@@ -2802,8 +2804,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_4_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[4].de),
+    .d      (hw2reg.msip[4].d ),
 
     // to internal hardware
     .qe     (),
@@ -2828,8 +2830,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_5_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[5].de),
+    .d      (hw2reg.msip[5].d ),
 
     // to internal hardware
     .qe     (),
@@ -2854,8 +2856,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_6_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[6].de),
+    .d      (hw2reg.msip[6].d ),
 
     // to internal hardware
     .qe     (),
@@ -2880,8 +2882,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_7_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[7].de),
+    .d      (hw2reg.msip[7].d ),
 
     // to internal hardware
     .qe     (),
@@ -2906,8 +2908,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_8_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[8].de),
+    .d      (hw2reg.msip[8].d ),
 
     // to internal hardware
     .qe     (),
@@ -2932,8 +2934,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_9_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[9].de),
+    .d      (hw2reg.msip[9].d ),
 
     // to internal hardware
     .qe     (),
@@ -2958,8 +2960,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_10_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[10].de),
+    .d      (hw2reg.msip[10].d ),
 
     // to internal hardware
     .qe     (),
@@ -2984,8 +2986,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_11_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[11].de),
+    .d      (hw2reg.msip[11].d ),
 
     // to internal hardware
     .qe     (),
@@ -3010,8 +3012,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_12_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[12].de),
+    .d      (hw2reg.msip[12].d ),
 
     // to internal hardware
     .qe     (),
@@ -3036,8 +3038,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_13_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[13].de),
+    .d      (hw2reg.msip[13].d ),
 
     // to internal hardware
     .qe     (),
@@ -3062,8 +3064,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_14_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[14].de),
+    .d      (hw2reg.msip[14].d ),
 
     // to internal hardware
     .qe     (),
@@ -3088,8 +3090,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_15_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[15].de),
+    .d      (hw2reg.msip[15].d ),
 
     // to internal hardware
     .qe     (),
@@ -3114,8 +3116,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_16_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[16].de),
+    .d      (hw2reg.msip[16].d ),
 
     // to internal hardware
     .qe     (),
@@ -3140,8 +3142,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_17_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[17].de),
+    .d      (hw2reg.msip[17].d ),
 
     // to internal hardware
     .qe     (),
@@ -3166,8 +3168,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_18_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[18].de),
+    .d      (hw2reg.msip[18].d ),
 
     // to internal hardware
     .qe     (),
@@ -3192,8 +3194,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_19_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[19].de),
+    .d      (hw2reg.msip[19].d ),
 
     // to internal hardware
     .qe     (),
@@ -3218,8 +3220,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_20_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[20].de),
+    .d      (hw2reg.msip[20].d ),
 
     // to internal hardware
     .qe     (),
@@ -3244,8 +3246,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_21_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[21].de),
+    .d      (hw2reg.msip[21].d ),
 
     // to internal hardware
     .qe     (),
@@ -3270,8 +3272,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_22_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[22].de),
+    .d      (hw2reg.msip[22].d ),
 
     // to internal hardware
     .qe     (),
@@ -3296,8 +3298,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_23_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[23].de),
+    .d      (hw2reg.msip[23].d ),
 
     // to internal hardware
     .qe     (),
@@ -3322,8 +3324,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_24_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[24].de),
+    .d      (hw2reg.msip[24].d ),
 
     // to internal hardware
     .qe     (),
@@ -3348,8 +3350,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_25_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[25].de),
+    .d      (hw2reg.msip[25].d ),
 
     // to internal hardware
     .qe     (),
@@ -3374,8 +3376,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_26_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[26].de),
+    .d      (hw2reg.msip[26].d ),
 
     // to internal hardware
     .qe     (),
@@ -3400,8 +3402,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_27_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[27].de),
+    .d      (hw2reg.msip[27].d ),
 
     // to internal hardware
     .qe     (),
@@ -3426,8 +3428,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_28_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[28].de),
+    .d      (hw2reg.msip[28].d ),
 
     // to internal hardware
     .qe     (),
@@ -3452,8 +3454,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_29_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[29].de),
+    .d      (hw2reg.msip[29].d ),
 
     // to internal hardware
     .qe     (),
@@ -3478,8 +3480,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_30_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[30].de),
+    .d      (hw2reg.msip[30].d ),
 
     // to internal hardware
     .qe     (),
@@ -3504,8 +3506,8 @@ module clint_reg_top #(
     .wd     (msip_0_p_31_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[31].de),
+    .d      (hw2reg.msip[31].d ),
 
     // to internal hardware
     .qe     (),
@@ -3533,8 +3535,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_32_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[32].de),
+    .d      (hw2reg.msip[32].d ),
 
     // to internal hardware
     .qe     (),
@@ -3559,8 +3561,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_33_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[33].de),
+    .d      (hw2reg.msip[33].d ),
 
     // to internal hardware
     .qe     (),
@@ -3585,8 +3587,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_34_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[34].de),
+    .d      (hw2reg.msip[34].d ),
 
     // to internal hardware
     .qe     (),
@@ -3611,8 +3613,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_35_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[35].de),
+    .d      (hw2reg.msip[35].d ),
 
     // to internal hardware
     .qe     (),
@@ -3637,8 +3639,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_36_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[36].de),
+    .d      (hw2reg.msip[36].d ),
 
     // to internal hardware
     .qe     (),
@@ -3663,8 +3665,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_37_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[37].de),
+    .d      (hw2reg.msip[37].d ),
 
     // to internal hardware
     .qe     (),
@@ -3689,8 +3691,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_38_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[38].de),
+    .d      (hw2reg.msip[38].d ),
 
     // to internal hardware
     .qe     (),
@@ -3715,8 +3717,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_39_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[39].de),
+    .d      (hw2reg.msip[39].d ),
 
     // to internal hardware
     .qe     (),
@@ -3741,8 +3743,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_40_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[40].de),
+    .d      (hw2reg.msip[40].d ),
 
     // to internal hardware
     .qe     (),
@@ -3767,8 +3769,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_41_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[41].de),
+    .d      (hw2reg.msip[41].d ),
 
     // to internal hardware
     .qe     (),
@@ -3793,8 +3795,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_42_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[42].de),
+    .d      (hw2reg.msip[42].d ),
 
     // to internal hardware
     .qe     (),
@@ -3819,8 +3821,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_43_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[43].de),
+    .d      (hw2reg.msip[43].d ),
 
     // to internal hardware
     .qe     (),
@@ -3845,8 +3847,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_44_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[44].de),
+    .d      (hw2reg.msip[44].d ),
 
     // to internal hardware
     .qe     (),
@@ -3871,8 +3873,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_45_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[45].de),
+    .d      (hw2reg.msip[45].d ),
 
     // to internal hardware
     .qe     (),
@@ -3897,8 +3899,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_46_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[46].de),
+    .d      (hw2reg.msip[46].d ),
 
     // to internal hardware
     .qe     (),
@@ -3923,8 +3925,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_47_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[47].de),
+    .d      (hw2reg.msip[47].d ),
 
     // to internal hardware
     .qe     (),
@@ -3949,8 +3951,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_48_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[48].de),
+    .d      (hw2reg.msip[48].d ),
 
     // to internal hardware
     .qe     (),
@@ -3975,8 +3977,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_49_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[49].de),
+    .d      (hw2reg.msip[49].d ),
 
     // to internal hardware
     .qe     (),
@@ -4001,8 +4003,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_50_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[50].de),
+    .d      (hw2reg.msip[50].d ),
 
     // to internal hardware
     .qe     (),
@@ -4027,8 +4029,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_51_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[51].de),
+    .d      (hw2reg.msip[51].d ),
 
     // to internal hardware
     .qe     (),
@@ -4053,8 +4055,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_52_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[52].de),
+    .d      (hw2reg.msip[52].d ),
 
     // to internal hardware
     .qe     (),
@@ -4079,8 +4081,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_53_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[53].de),
+    .d      (hw2reg.msip[53].d ),
 
     // to internal hardware
     .qe     (),
@@ -4105,8 +4107,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_54_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[54].de),
+    .d      (hw2reg.msip[54].d ),
 
     // to internal hardware
     .qe     (),
@@ -4131,8 +4133,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_55_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[55].de),
+    .d      (hw2reg.msip[55].d ),
 
     // to internal hardware
     .qe     (),
@@ -4157,8 +4159,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_56_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[56].de),
+    .d      (hw2reg.msip[56].d ),
 
     // to internal hardware
     .qe     (),
@@ -4183,8 +4185,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_57_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[57].de),
+    .d      (hw2reg.msip[57].d ),
 
     // to internal hardware
     .qe     (),
@@ -4209,8 +4211,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_58_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[58].de),
+    .d      (hw2reg.msip[58].d ),
 
     // to internal hardware
     .qe     (),
@@ -4235,8 +4237,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_59_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[59].de),
+    .d      (hw2reg.msip[59].d ),
 
     // to internal hardware
     .qe     (),
@@ -4261,8 +4263,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_60_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[60].de),
+    .d      (hw2reg.msip[60].d ),
 
     // to internal hardware
     .qe     (),
@@ -4287,8 +4289,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_61_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[61].de),
+    .d      (hw2reg.msip[61].d ),
 
     // to internal hardware
     .qe     (),
@@ -4313,8 +4315,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_62_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[62].de),
+    .d      (hw2reg.msip[62].d ),
 
     // to internal hardware
     .qe     (),
@@ -4339,8 +4341,8 @@ module clint_reg_top #(
     .wd     (msip_1_p_63_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[63].de),
+    .d      (hw2reg.msip[63].d ),
 
     // to internal hardware
     .qe     (),
@@ -4368,8 +4370,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_64_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[64].de),
+    .d      (hw2reg.msip[64].d ),
 
     // to internal hardware
     .qe     (),
@@ -4394,8 +4396,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_65_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[65].de),
+    .d      (hw2reg.msip[65].d ),
 
     // to internal hardware
     .qe     (),
@@ -4420,8 +4422,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_66_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[66].de),
+    .d      (hw2reg.msip[66].d ),
 
     // to internal hardware
     .qe     (),
@@ -4446,8 +4448,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_67_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[67].de),
+    .d      (hw2reg.msip[67].d ),
 
     // to internal hardware
     .qe     (),
@@ -4472,8 +4474,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_68_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[68].de),
+    .d      (hw2reg.msip[68].d ),
 
     // to internal hardware
     .qe     (),
@@ -4498,8 +4500,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_69_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[69].de),
+    .d      (hw2reg.msip[69].d ),
 
     // to internal hardware
     .qe     (),
@@ -4524,8 +4526,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_70_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[70].de),
+    .d      (hw2reg.msip[70].d ),
 
     // to internal hardware
     .qe     (),
@@ -4550,8 +4552,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_71_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[71].de),
+    .d      (hw2reg.msip[71].d ),
 
     // to internal hardware
     .qe     (),
@@ -4576,8 +4578,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_72_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[72].de),
+    .d      (hw2reg.msip[72].d ),
 
     // to internal hardware
     .qe     (),
@@ -4602,8 +4604,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_73_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[73].de),
+    .d      (hw2reg.msip[73].d ),
 
     // to internal hardware
     .qe     (),
@@ -4628,8 +4630,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_74_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[74].de),
+    .d      (hw2reg.msip[74].d ),
 
     // to internal hardware
     .qe     (),
@@ -4654,8 +4656,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_75_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[75].de),
+    .d      (hw2reg.msip[75].d ),
 
     // to internal hardware
     .qe     (),
@@ -4680,8 +4682,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_76_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[76].de),
+    .d      (hw2reg.msip[76].d ),
 
     // to internal hardware
     .qe     (),
@@ -4706,8 +4708,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_77_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[77].de),
+    .d      (hw2reg.msip[77].d ),
 
     // to internal hardware
     .qe     (),
@@ -4732,8 +4734,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_78_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[78].de),
+    .d      (hw2reg.msip[78].d ),
 
     // to internal hardware
     .qe     (),
@@ -4758,8 +4760,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_79_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[79].de),
+    .d      (hw2reg.msip[79].d ),
 
     // to internal hardware
     .qe     (),
@@ -4784,8 +4786,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_80_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[80].de),
+    .d      (hw2reg.msip[80].d ),
 
     // to internal hardware
     .qe     (),
@@ -4810,8 +4812,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_81_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[81].de),
+    .d      (hw2reg.msip[81].d ),
 
     // to internal hardware
     .qe     (),
@@ -4836,8 +4838,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_82_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[82].de),
+    .d      (hw2reg.msip[82].d ),
 
     // to internal hardware
     .qe     (),
@@ -4862,8 +4864,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_83_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[83].de),
+    .d      (hw2reg.msip[83].d ),
 
     // to internal hardware
     .qe     (),
@@ -4888,8 +4890,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_84_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[84].de),
+    .d      (hw2reg.msip[84].d ),
 
     // to internal hardware
     .qe     (),
@@ -4914,8 +4916,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_85_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[85].de),
+    .d      (hw2reg.msip[85].d ),
 
     // to internal hardware
     .qe     (),
@@ -4940,8 +4942,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_86_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[86].de),
+    .d      (hw2reg.msip[86].d ),
 
     // to internal hardware
     .qe     (),
@@ -4966,8 +4968,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_87_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[87].de),
+    .d      (hw2reg.msip[87].d ),
 
     // to internal hardware
     .qe     (),
@@ -4992,8 +4994,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_88_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[88].de),
+    .d      (hw2reg.msip[88].d ),
 
     // to internal hardware
     .qe     (),
@@ -5018,8 +5020,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_89_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[89].de),
+    .d      (hw2reg.msip[89].d ),
 
     // to internal hardware
     .qe     (),
@@ -5044,8 +5046,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_90_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[90].de),
+    .d      (hw2reg.msip[90].d ),
 
     // to internal hardware
     .qe     (),
@@ -5070,8 +5072,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_91_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[91].de),
+    .d      (hw2reg.msip[91].d ),
 
     // to internal hardware
     .qe     (),
@@ -5096,8 +5098,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_92_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[92].de),
+    .d      (hw2reg.msip[92].d ),
 
     // to internal hardware
     .qe     (),
@@ -5122,8 +5124,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_93_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[93].de),
+    .d      (hw2reg.msip[93].d ),
 
     // to internal hardware
     .qe     (),
@@ -5148,8 +5150,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_94_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[94].de),
+    .d      (hw2reg.msip[94].d ),
 
     // to internal hardware
     .qe     (),
@@ -5174,8 +5176,8 @@ module clint_reg_top #(
     .wd     (msip_2_p_95_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[95].de),
+    .d      (hw2reg.msip[95].d ),
 
     // to internal hardware
     .qe     (),
@@ -5203,8 +5205,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_96_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[96].de),
+    .d      (hw2reg.msip[96].d ),
 
     // to internal hardware
     .qe     (),
@@ -5229,8 +5231,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_97_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[97].de),
+    .d      (hw2reg.msip[97].d ),
 
     // to internal hardware
     .qe     (),
@@ -5255,8 +5257,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_98_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[98].de),
+    .d      (hw2reg.msip[98].d ),
 
     // to internal hardware
     .qe     (),
@@ -5281,8 +5283,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_99_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[99].de),
+    .d      (hw2reg.msip[99].d ),
 
     // to internal hardware
     .qe     (),
@@ -5307,8 +5309,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_100_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[100].de),
+    .d      (hw2reg.msip[100].d ),
 
     // to internal hardware
     .qe     (),
@@ -5333,8 +5335,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_101_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[101].de),
+    .d      (hw2reg.msip[101].d ),
 
     // to internal hardware
     .qe     (),
@@ -5359,8 +5361,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_102_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[102].de),
+    .d      (hw2reg.msip[102].d ),
 
     // to internal hardware
     .qe     (),
@@ -5385,8 +5387,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_103_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[103].de),
+    .d      (hw2reg.msip[103].d ),
 
     // to internal hardware
     .qe     (),
@@ -5411,8 +5413,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_104_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[104].de),
+    .d      (hw2reg.msip[104].d ),
 
     // to internal hardware
     .qe     (),
@@ -5437,8 +5439,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_105_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[105].de),
+    .d      (hw2reg.msip[105].d ),
 
     // to internal hardware
     .qe     (),
@@ -5463,8 +5465,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_106_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[106].de),
+    .d      (hw2reg.msip[106].d ),
 
     // to internal hardware
     .qe     (),
@@ -5489,8 +5491,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_107_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[107].de),
+    .d      (hw2reg.msip[107].d ),
 
     // to internal hardware
     .qe     (),
@@ -5515,8 +5517,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_108_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[108].de),
+    .d      (hw2reg.msip[108].d ),
 
     // to internal hardware
     .qe     (),
@@ -5541,8 +5543,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_109_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[109].de),
+    .d      (hw2reg.msip[109].d ),
 
     // to internal hardware
     .qe     (),
@@ -5567,8 +5569,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_110_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[110].de),
+    .d      (hw2reg.msip[110].d ),
 
     // to internal hardware
     .qe     (),
@@ -5593,8 +5595,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_111_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[111].de),
+    .d      (hw2reg.msip[111].d ),
 
     // to internal hardware
     .qe     (),
@@ -5619,8 +5621,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_112_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[112].de),
+    .d      (hw2reg.msip[112].d ),
 
     // to internal hardware
     .qe     (),
@@ -5645,8 +5647,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_113_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[113].de),
+    .d      (hw2reg.msip[113].d ),
 
     // to internal hardware
     .qe     (),
@@ -5671,8 +5673,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_114_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[114].de),
+    .d      (hw2reg.msip[114].d ),
 
     // to internal hardware
     .qe     (),
@@ -5697,8 +5699,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_115_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[115].de),
+    .d      (hw2reg.msip[115].d ),
 
     // to internal hardware
     .qe     (),
@@ -5723,8 +5725,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_116_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[116].de),
+    .d      (hw2reg.msip[116].d ),
 
     // to internal hardware
     .qe     (),
@@ -5749,8 +5751,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_117_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[117].de),
+    .d      (hw2reg.msip[117].d ),
 
     // to internal hardware
     .qe     (),
@@ -5775,8 +5777,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_118_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[118].de),
+    .d      (hw2reg.msip[118].d ),
 
     // to internal hardware
     .qe     (),
@@ -5801,8 +5803,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_119_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[119].de),
+    .d      (hw2reg.msip[119].d ),
 
     // to internal hardware
     .qe     (),
@@ -5827,8 +5829,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_120_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[120].de),
+    .d      (hw2reg.msip[120].d ),
 
     // to internal hardware
     .qe     (),
@@ -5853,8 +5855,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_121_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[121].de),
+    .d      (hw2reg.msip[121].d ),
 
     // to internal hardware
     .qe     (),
@@ -5879,8 +5881,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_122_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[122].de),
+    .d      (hw2reg.msip[122].d ),
 
     // to internal hardware
     .qe     (),
@@ -5905,8 +5907,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_123_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[123].de),
+    .d      (hw2reg.msip[123].d ),
 
     // to internal hardware
     .qe     (),
@@ -5931,8 +5933,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_124_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[124].de),
+    .d      (hw2reg.msip[124].d ),
 
     // to internal hardware
     .qe     (),
@@ -5957,8 +5959,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_125_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[125].de),
+    .d      (hw2reg.msip[125].d ),
 
     // to internal hardware
     .qe     (),
@@ -5983,8 +5985,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_126_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[126].de),
+    .d      (hw2reg.msip[126].d ),
 
     // to internal hardware
     .qe     (),
@@ -6009,8 +6011,8 @@ module clint_reg_top #(
     .wd     (msip_3_p_127_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[127].de),
+    .d      (hw2reg.msip[127].d ),
 
     // to internal hardware
     .qe     (),
@@ -6038,8 +6040,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_128_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[128].de),
+    .d      (hw2reg.msip[128].d ),
 
     // to internal hardware
     .qe     (),
@@ -6064,8 +6066,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_129_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[129].de),
+    .d      (hw2reg.msip[129].d ),
 
     // to internal hardware
     .qe     (),
@@ -6090,8 +6092,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_130_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[130].de),
+    .d      (hw2reg.msip[130].d ),
 
     // to internal hardware
     .qe     (),
@@ -6116,8 +6118,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_131_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[131].de),
+    .d      (hw2reg.msip[131].d ),
 
     // to internal hardware
     .qe     (),
@@ -6142,8 +6144,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_132_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[132].de),
+    .d      (hw2reg.msip[132].d ),
 
     // to internal hardware
     .qe     (),
@@ -6168,8 +6170,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_133_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[133].de),
+    .d      (hw2reg.msip[133].d ),
 
     // to internal hardware
     .qe     (),
@@ -6194,8 +6196,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_134_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[134].de),
+    .d      (hw2reg.msip[134].d ),
 
     // to internal hardware
     .qe     (),
@@ -6220,8 +6222,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_135_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[135].de),
+    .d      (hw2reg.msip[135].d ),
 
     // to internal hardware
     .qe     (),
@@ -6246,8 +6248,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_136_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[136].de),
+    .d      (hw2reg.msip[136].d ),
 
     // to internal hardware
     .qe     (),
@@ -6272,8 +6274,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_137_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[137].de),
+    .d      (hw2reg.msip[137].d ),
 
     // to internal hardware
     .qe     (),
@@ -6298,8 +6300,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_138_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[138].de),
+    .d      (hw2reg.msip[138].d ),
 
     // to internal hardware
     .qe     (),
@@ -6324,8 +6326,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_139_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[139].de),
+    .d      (hw2reg.msip[139].d ),
 
     // to internal hardware
     .qe     (),
@@ -6350,8 +6352,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_140_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[140].de),
+    .d      (hw2reg.msip[140].d ),
 
     // to internal hardware
     .qe     (),
@@ -6376,8 +6378,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_141_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[141].de),
+    .d      (hw2reg.msip[141].d ),
 
     // to internal hardware
     .qe     (),
@@ -6402,8 +6404,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_142_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[142].de),
+    .d      (hw2reg.msip[142].d ),
 
     // to internal hardware
     .qe     (),
@@ -6428,8 +6430,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_143_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[143].de),
+    .d      (hw2reg.msip[143].d ),
 
     // to internal hardware
     .qe     (),
@@ -6454,8 +6456,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_144_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[144].de),
+    .d      (hw2reg.msip[144].d ),
 
     // to internal hardware
     .qe     (),
@@ -6480,8 +6482,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_145_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[145].de),
+    .d      (hw2reg.msip[145].d ),
 
     // to internal hardware
     .qe     (),
@@ -6506,8 +6508,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_146_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[146].de),
+    .d      (hw2reg.msip[146].d ),
 
     // to internal hardware
     .qe     (),
@@ -6532,8 +6534,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_147_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[147].de),
+    .d      (hw2reg.msip[147].d ),
 
     // to internal hardware
     .qe     (),
@@ -6558,8 +6560,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_148_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[148].de),
+    .d      (hw2reg.msip[148].d ),
 
     // to internal hardware
     .qe     (),
@@ -6584,8 +6586,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_149_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[149].de),
+    .d      (hw2reg.msip[149].d ),
 
     // to internal hardware
     .qe     (),
@@ -6610,8 +6612,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_150_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[150].de),
+    .d      (hw2reg.msip[150].d ),
 
     // to internal hardware
     .qe     (),
@@ -6636,8 +6638,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_151_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[151].de),
+    .d      (hw2reg.msip[151].d ),
 
     // to internal hardware
     .qe     (),
@@ -6662,8 +6664,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_152_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[152].de),
+    .d      (hw2reg.msip[152].d ),
 
     // to internal hardware
     .qe     (),
@@ -6688,8 +6690,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_153_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[153].de),
+    .d      (hw2reg.msip[153].d ),
 
     // to internal hardware
     .qe     (),
@@ -6714,8 +6716,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_154_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[154].de),
+    .d      (hw2reg.msip[154].d ),
 
     // to internal hardware
     .qe     (),
@@ -6740,8 +6742,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_155_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[155].de),
+    .d      (hw2reg.msip[155].d ),
 
     // to internal hardware
     .qe     (),
@@ -6766,8 +6768,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_156_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[156].de),
+    .d      (hw2reg.msip[156].d ),
 
     // to internal hardware
     .qe     (),
@@ -6792,8 +6794,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_157_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[157].de),
+    .d      (hw2reg.msip[157].d ),
 
     // to internal hardware
     .qe     (),
@@ -6818,8 +6820,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_158_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[158].de),
+    .d      (hw2reg.msip[158].d ),
 
     // to internal hardware
     .qe     (),
@@ -6844,8 +6846,8 @@ module clint_reg_top #(
     .wd     (msip_4_p_159_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[159].de),
+    .d      (hw2reg.msip[159].d ),
 
     // to internal hardware
     .qe     (),
@@ -6873,8 +6875,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_160_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[160].de),
+    .d      (hw2reg.msip[160].d ),
 
     // to internal hardware
     .qe     (),
@@ -6899,8 +6901,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_161_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[161].de),
+    .d      (hw2reg.msip[161].d ),
 
     // to internal hardware
     .qe     (),
@@ -6925,8 +6927,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_162_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[162].de),
+    .d      (hw2reg.msip[162].d ),
 
     // to internal hardware
     .qe     (),
@@ -6951,8 +6953,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_163_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[163].de),
+    .d      (hw2reg.msip[163].d ),
 
     // to internal hardware
     .qe     (),
@@ -6977,8 +6979,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_164_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[164].de),
+    .d      (hw2reg.msip[164].d ),
 
     // to internal hardware
     .qe     (),
@@ -7003,8 +7005,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_165_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[165].de),
+    .d      (hw2reg.msip[165].d ),
 
     // to internal hardware
     .qe     (),
@@ -7029,8 +7031,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_166_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[166].de),
+    .d      (hw2reg.msip[166].d ),
 
     // to internal hardware
     .qe     (),
@@ -7055,8 +7057,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_167_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[167].de),
+    .d      (hw2reg.msip[167].d ),
 
     // to internal hardware
     .qe     (),
@@ -7081,8 +7083,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_168_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[168].de),
+    .d      (hw2reg.msip[168].d ),
 
     // to internal hardware
     .qe     (),
@@ -7107,8 +7109,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_169_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[169].de),
+    .d      (hw2reg.msip[169].d ),
 
     // to internal hardware
     .qe     (),
@@ -7133,8 +7135,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_170_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[170].de),
+    .d      (hw2reg.msip[170].d ),
 
     // to internal hardware
     .qe     (),
@@ -7159,8 +7161,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_171_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[171].de),
+    .d      (hw2reg.msip[171].d ),
 
     // to internal hardware
     .qe     (),
@@ -7185,8 +7187,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_172_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[172].de),
+    .d      (hw2reg.msip[172].d ),
 
     // to internal hardware
     .qe     (),
@@ -7211,8 +7213,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_173_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[173].de),
+    .d      (hw2reg.msip[173].d ),
 
     // to internal hardware
     .qe     (),
@@ -7237,8 +7239,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_174_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[174].de),
+    .d      (hw2reg.msip[174].d ),
 
     // to internal hardware
     .qe     (),
@@ -7263,8 +7265,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_175_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[175].de),
+    .d      (hw2reg.msip[175].d ),
 
     // to internal hardware
     .qe     (),
@@ -7289,8 +7291,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_176_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[176].de),
+    .d      (hw2reg.msip[176].d ),
 
     // to internal hardware
     .qe     (),
@@ -7315,8 +7317,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_177_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[177].de),
+    .d      (hw2reg.msip[177].d ),
 
     // to internal hardware
     .qe     (),
@@ -7341,8 +7343,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_178_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[178].de),
+    .d      (hw2reg.msip[178].d ),
 
     // to internal hardware
     .qe     (),
@@ -7367,8 +7369,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_179_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[179].de),
+    .d      (hw2reg.msip[179].d ),
 
     // to internal hardware
     .qe     (),
@@ -7393,8 +7395,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_180_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[180].de),
+    .d      (hw2reg.msip[180].d ),
 
     // to internal hardware
     .qe     (),
@@ -7419,8 +7421,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_181_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[181].de),
+    .d      (hw2reg.msip[181].d ),
 
     // to internal hardware
     .qe     (),
@@ -7445,8 +7447,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_182_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[182].de),
+    .d      (hw2reg.msip[182].d ),
 
     // to internal hardware
     .qe     (),
@@ -7471,8 +7473,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_183_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[183].de),
+    .d      (hw2reg.msip[183].d ),
 
     // to internal hardware
     .qe     (),
@@ -7497,8 +7499,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_184_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[184].de),
+    .d      (hw2reg.msip[184].d ),
 
     // to internal hardware
     .qe     (),
@@ -7523,8 +7525,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_185_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[185].de),
+    .d      (hw2reg.msip[185].d ),
 
     // to internal hardware
     .qe     (),
@@ -7549,8 +7551,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_186_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[186].de),
+    .d      (hw2reg.msip[186].d ),
 
     // to internal hardware
     .qe     (),
@@ -7575,8 +7577,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_187_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[187].de),
+    .d      (hw2reg.msip[187].d ),
 
     // to internal hardware
     .qe     (),
@@ -7601,8 +7603,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_188_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[188].de),
+    .d      (hw2reg.msip[188].d ),
 
     // to internal hardware
     .qe     (),
@@ -7627,8 +7629,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_189_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[189].de),
+    .d      (hw2reg.msip[189].d ),
 
     // to internal hardware
     .qe     (),
@@ -7653,8 +7655,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_190_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[190].de),
+    .d      (hw2reg.msip[190].d ),
 
     // to internal hardware
     .qe     (),
@@ -7679,8 +7681,8 @@ module clint_reg_top #(
     .wd     (msip_5_p_191_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[191].de),
+    .d      (hw2reg.msip[191].d ),
 
     // to internal hardware
     .qe     (),
@@ -7708,8 +7710,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_192_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[192].de),
+    .d      (hw2reg.msip[192].d ),
 
     // to internal hardware
     .qe     (),
@@ -7734,8 +7736,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_193_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[193].de),
+    .d      (hw2reg.msip[193].d ),
 
     // to internal hardware
     .qe     (),
@@ -7760,8 +7762,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_194_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[194].de),
+    .d      (hw2reg.msip[194].d ),
 
     // to internal hardware
     .qe     (),
@@ -7786,8 +7788,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_195_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[195].de),
+    .d      (hw2reg.msip[195].d ),
 
     // to internal hardware
     .qe     (),
@@ -7812,8 +7814,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_196_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[196].de),
+    .d      (hw2reg.msip[196].d ),
 
     // to internal hardware
     .qe     (),
@@ -7838,8 +7840,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_197_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[197].de),
+    .d      (hw2reg.msip[197].d ),
 
     // to internal hardware
     .qe     (),
@@ -7864,8 +7866,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_198_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[198].de),
+    .d      (hw2reg.msip[198].d ),
 
     // to internal hardware
     .qe     (),
@@ -7890,8 +7892,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_199_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[199].de),
+    .d      (hw2reg.msip[199].d ),
 
     // to internal hardware
     .qe     (),
@@ -7916,8 +7918,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_200_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[200].de),
+    .d      (hw2reg.msip[200].d ),
 
     // to internal hardware
     .qe     (),
@@ -7942,8 +7944,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_201_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[201].de),
+    .d      (hw2reg.msip[201].d ),
 
     // to internal hardware
     .qe     (),
@@ -7968,8 +7970,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_202_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[202].de),
+    .d      (hw2reg.msip[202].d ),
 
     // to internal hardware
     .qe     (),
@@ -7994,8 +7996,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_203_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[203].de),
+    .d      (hw2reg.msip[203].d ),
 
     // to internal hardware
     .qe     (),
@@ -8020,8 +8022,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_204_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[204].de),
+    .d      (hw2reg.msip[204].d ),
 
     // to internal hardware
     .qe     (),
@@ -8046,8 +8048,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_205_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[205].de),
+    .d      (hw2reg.msip[205].d ),
 
     // to internal hardware
     .qe     (),
@@ -8072,8 +8074,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_206_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[206].de),
+    .d      (hw2reg.msip[206].d ),
 
     // to internal hardware
     .qe     (),
@@ -8098,8 +8100,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_207_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[207].de),
+    .d      (hw2reg.msip[207].d ),
 
     // to internal hardware
     .qe     (),
@@ -8124,8 +8126,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_208_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[208].de),
+    .d      (hw2reg.msip[208].d ),
 
     // to internal hardware
     .qe     (),
@@ -8150,8 +8152,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_209_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[209].de),
+    .d      (hw2reg.msip[209].d ),
 
     // to internal hardware
     .qe     (),
@@ -8176,8 +8178,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_210_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[210].de),
+    .d      (hw2reg.msip[210].d ),
 
     // to internal hardware
     .qe     (),
@@ -8202,8 +8204,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_211_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[211].de),
+    .d      (hw2reg.msip[211].d ),
 
     // to internal hardware
     .qe     (),
@@ -8228,8 +8230,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_212_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[212].de),
+    .d      (hw2reg.msip[212].d ),
 
     // to internal hardware
     .qe     (),
@@ -8254,8 +8256,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_213_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[213].de),
+    .d      (hw2reg.msip[213].d ),
 
     // to internal hardware
     .qe     (),
@@ -8280,8 +8282,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_214_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[214].de),
+    .d      (hw2reg.msip[214].d ),
 
     // to internal hardware
     .qe     (),
@@ -8306,8 +8308,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_215_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[215].de),
+    .d      (hw2reg.msip[215].d ),
 
     // to internal hardware
     .qe     (),
@@ -8332,8 +8334,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_216_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[216].de),
+    .d      (hw2reg.msip[216].d ),
 
     // to internal hardware
     .qe     (),
@@ -8358,8 +8360,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_217_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[217].de),
+    .d      (hw2reg.msip[217].d ),
 
     // to internal hardware
     .qe     (),
@@ -8384,8 +8386,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_218_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[218].de),
+    .d      (hw2reg.msip[218].d ),
 
     // to internal hardware
     .qe     (),
@@ -8410,8 +8412,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_219_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[219].de),
+    .d      (hw2reg.msip[219].d ),
 
     // to internal hardware
     .qe     (),
@@ -8436,8 +8438,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_220_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[220].de),
+    .d      (hw2reg.msip[220].d ),
 
     // to internal hardware
     .qe     (),
@@ -8462,8 +8464,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_221_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[221].de),
+    .d      (hw2reg.msip[221].d ),
 
     // to internal hardware
     .qe     (),
@@ -8488,8 +8490,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_222_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[222].de),
+    .d      (hw2reg.msip[222].d ),
 
     // to internal hardware
     .qe     (),
@@ -8514,8 +8516,8 @@ module clint_reg_top #(
     .wd     (msip_6_p_223_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[223].de),
+    .d      (hw2reg.msip[223].d ),
 
     // to internal hardware
     .qe     (),
@@ -8543,8 +8545,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_224_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[224].de),
+    .d      (hw2reg.msip[224].d ),
 
     // to internal hardware
     .qe     (),
@@ -8569,8 +8571,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_225_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[225].de),
+    .d      (hw2reg.msip[225].d ),
 
     // to internal hardware
     .qe     (),
@@ -8595,8 +8597,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_226_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[226].de),
+    .d      (hw2reg.msip[226].d ),
 
     // to internal hardware
     .qe     (),
@@ -8621,8 +8623,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_227_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[227].de),
+    .d      (hw2reg.msip[227].d ),
 
     // to internal hardware
     .qe     (),
@@ -8647,8 +8649,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_228_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[228].de),
+    .d      (hw2reg.msip[228].d ),
 
     // to internal hardware
     .qe     (),
@@ -8673,8 +8675,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_229_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[229].de),
+    .d      (hw2reg.msip[229].d ),
 
     // to internal hardware
     .qe     (),
@@ -8699,8 +8701,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_230_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[230].de),
+    .d      (hw2reg.msip[230].d ),
 
     // to internal hardware
     .qe     (),
@@ -8725,8 +8727,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_231_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[231].de),
+    .d      (hw2reg.msip[231].d ),
 
     // to internal hardware
     .qe     (),
@@ -8751,8 +8753,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_232_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[232].de),
+    .d      (hw2reg.msip[232].d ),
 
     // to internal hardware
     .qe     (),
@@ -8777,8 +8779,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_233_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[233].de),
+    .d      (hw2reg.msip[233].d ),
 
     // to internal hardware
     .qe     (),
@@ -8803,8 +8805,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_234_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[234].de),
+    .d      (hw2reg.msip[234].d ),
 
     // to internal hardware
     .qe     (),
@@ -8829,8 +8831,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_235_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[235].de),
+    .d      (hw2reg.msip[235].d ),
 
     // to internal hardware
     .qe     (),
@@ -8855,8 +8857,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_236_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[236].de),
+    .d      (hw2reg.msip[236].d ),
 
     // to internal hardware
     .qe     (),
@@ -8881,8 +8883,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_237_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[237].de),
+    .d      (hw2reg.msip[237].d ),
 
     // to internal hardware
     .qe     (),
@@ -8907,8 +8909,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_238_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[238].de),
+    .d      (hw2reg.msip[238].d ),
 
     // to internal hardware
     .qe     (),
@@ -8933,8 +8935,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_239_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[239].de),
+    .d      (hw2reg.msip[239].d ),
 
     // to internal hardware
     .qe     (),
@@ -8959,8 +8961,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_240_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[240].de),
+    .d      (hw2reg.msip[240].d ),
 
     // to internal hardware
     .qe     (),
@@ -8985,8 +8987,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_241_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[241].de),
+    .d      (hw2reg.msip[241].d ),
 
     // to internal hardware
     .qe     (),
@@ -9011,8 +9013,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_242_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[242].de),
+    .d      (hw2reg.msip[242].d ),
 
     // to internal hardware
     .qe     (),
@@ -9037,8 +9039,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_243_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[243].de),
+    .d      (hw2reg.msip[243].d ),
 
     // to internal hardware
     .qe     (),
@@ -9063,8 +9065,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_244_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[244].de),
+    .d      (hw2reg.msip[244].d ),
 
     // to internal hardware
     .qe     (),
@@ -9089,8 +9091,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_245_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[245].de),
+    .d      (hw2reg.msip[245].d ),
 
     // to internal hardware
     .qe     (),
@@ -9115,8 +9117,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_246_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[246].de),
+    .d      (hw2reg.msip[246].d ),
 
     // to internal hardware
     .qe     (),
@@ -9141,8 +9143,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_247_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[247].de),
+    .d      (hw2reg.msip[247].d ),
 
     // to internal hardware
     .qe     (),
@@ -9167,8 +9169,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_248_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[248].de),
+    .d      (hw2reg.msip[248].d ),
 
     // to internal hardware
     .qe     (),
@@ -9193,8 +9195,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_249_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[249].de),
+    .d      (hw2reg.msip[249].d ),
 
     // to internal hardware
     .qe     (),
@@ -9219,8 +9221,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_250_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[250].de),
+    .d      (hw2reg.msip[250].d ),
 
     // to internal hardware
     .qe     (),
@@ -9245,8 +9247,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_251_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[251].de),
+    .d      (hw2reg.msip[251].d ),
 
     // to internal hardware
     .qe     (),
@@ -9271,8 +9273,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_252_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[252].de),
+    .d      (hw2reg.msip[252].d ),
 
     // to internal hardware
     .qe     (),
@@ -9297,8 +9299,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_253_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[253].de),
+    .d      (hw2reg.msip[253].d ),
 
     // to internal hardware
     .qe     (),
@@ -9323,8 +9325,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_254_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[254].de),
+    .d      (hw2reg.msip[254].d ),
 
     // to internal hardware
     .qe     (),
@@ -9349,8 +9351,8 @@ module clint_reg_top #(
     .wd     (msip_7_p_255_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[255].de),
+    .d      (hw2reg.msip[255].d ),
 
     // to internal hardware
     .qe     (),
@@ -9378,8 +9380,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_256_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[256].de),
+    .d      (hw2reg.msip[256].d ),
 
     // to internal hardware
     .qe     (),
@@ -9404,8 +9406,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_257_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[257].de),
+    .d      (hw2reg.msip[257].d ),
 
     // to internal hardware
     .qe     (),
@@ -9430,8 +9432,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_258_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[258].de),
+    .d      (hw2reg.msip[258].d ),
 
     // to internal hardware
     .qe     (),
@@ -9456,8 +9458,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_259_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[259].de),
+    .d      (hw2reg.msip[259].d ),
 
     // to internal hardware
     .qe     (),
@@ -9482,8 +9484,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_260_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[260].de),
+    .d      (hw2reg.msip[260].d ),
 
     // to internal hardware
     .qe     (),
@@ -9508,8 +9510,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_261_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[261].de),
+    .d      (hw2reg.msip[261].d ),
 
     // to internal hardware
     .qe     (),
@@ -9534,8 +9536,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_262_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[262].de),
+    .d      (hw2reg.msip[262].d ),
 
     // to internal hardware
     .qe     (),
@@ -9560,8 +9562,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_263_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[263].de),
+    .d      (hw2reg.msip[263].d ),
 
     // to internal hardware
     .qe     (),
@@ -9586,8 +9588,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_264_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[264].de),
+    .d      (hw2reg.msip[264].d ),
 
     // to internal hardware
     .qe     (),
@@ -9612,8 +9614,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_265_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[265].de),
+    .d      (hw2reg.msip[265].d ),
 
     // to internal hardware
     .qe     (),
@@ -9638,8 +9640,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_266_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[266].de),
+    .d      (hw2reg.msip[266].d ),
 
     // to internal hardware
     .qe     (),
@@ -9664,8 +9666,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_267_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[267].de),
+    .d      (hw2reg.msip[267].d ),
 
     // to internal hardware
     .qe     (),
@@ -9690,8 +9692,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_268_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[268].de),
+    .d      (hw2reg.msip[268].d ),
 
     // to internal hardware
     .qe     (),
@@ -9716,8 +9718,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_269_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[269].de),
+    .d      (hw2reg.msip[269].d ),
 
     // to internal hardware
     .qe     (),
@@ -9742,8 +9744,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_270_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[270].de),
+    .d      (hw2reg.msip[270].d ),
 
     // to internal hardware
     .qe     (),
@@ -9768,8 +9770,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_271_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[271].de),
+    .d      (hw2reg.msip[271].d ),
 
     // to internal hardware
     .qe     (),
@@ -9794,8 +9796,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_272_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[272].de),
+    .d      (hw2reg.msip[272].d ),
 
     // to internal hardware
     .qe     (),
@@ -9820,8 +9822,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_273_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[273].de),
+    .d      (hw2reg.msip[273].d ),
 
     // to internal hardware
     .qe     (),
@@ -9846,8 +9848,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_274_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[274].de),
+    .d      (hw2reg.msip[274].d ),
 
     // to internal hardware
     .qe     (),
@@ -9872,8 +9874,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_275_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[275].de),
+    .d      (hw2reg.msip[275].d ),
 
     // to internal hardware
     .qe     (),
@@ -9898,8 +9900,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_276_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[276].de),
+    .d      (hw2reg.msip[276].d ),
 
     // to internal hardware
     .qe     (),
@@ -9924,8 +9926,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_277_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[277].de),
+    .d      (hw2reg.msip[277].d ),
 
     // to internal hardware
     .qe     (),
@@ -9950,8 +9952,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_278_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[278].de),
+    .d      (hw2reg.msip[278].d ),
 
     // to internal hardware
     .qe     (),
@@ -9976,8 +9978,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_279_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[279].de),
+    .d      (hw2reg.msip[279].d ),
 
     // to internal hardware
     .qe     (),
@@ -10002,8 +10004,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_280_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[280].de),
+    .d      (hw2reg.msip[280].d ),
 
     // to internal hardware
     .qe     (),
@@ -10028,8 +10030,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_281_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[281].de),
+    .d      (hw2reg.msip[281].d ),
 
     // to internal hardware
     .qe     (),
@@ -10054,8 +10056,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_282_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[282].de),
+    .d      (hw2reg.msip[282].d ),
 
     // to internal hardware
     .qe     (),
@@ -10080,8 +10082,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_283_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[283].de),
+    .d      (hw2reg.msip[283].d ),
 
     // to internal hardware
     .qe     (),
@@ -10106,8 +10108,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_284_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[284].de),
+    .d      (hw2reg.msip[284].d ),
 
     // to internal hardware
     .qe     (),
@@ -10132,8 +10134,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_285_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[285].de),
+    .d      (hw2reg.msip[285].d ),
 
     // to internal hardware
     .qe     (),
@@ -10158,8 +10160,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_286_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[286].de),
+    .d      (hw2reg.msip[286].d ),
 
     // to internal hardware
     .qe     (),
@@ -10184,8 +10186,8 @@ module clint_reg_top #(
     .wd     (msip_8_p_287_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[287].de),
+    .d      (hw2reg.msip[287].d ),
 
     // to internal hardware
     .qe     (),
@@ -10212,8 +10214,8 @@ module clint_reg_top #(
     .wd     (msip_9_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[288].de),
+    .d      (hw2reg.msip[288].d ),
 
     // to internal hardware
     .qe     (),
@@ -25911,9 +25913,25 @@ module clint_reg_top #(
   );
 
 
+  // R[msip_clr]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_msip_clr (
+    .re     (1'b0),
+    .we     (msip_clr_we),
+    .wd     (msip_clr_wd),
+    .d      ('0),
+    .qre    (),
+    .qe     (reg2hw.msip_clr.qe),
+    .q      (reg2hw.msip_clr.q ),
+    .qs     ()
+  );
 
 
-  logic [590:0] addr_hit;
+
+
+  logic [591:0] addr_hit;
   always_comb begin
     addr_hit = '0;
     addr_hit[  0] = (reg_addr == CLINT_MSIP_0_OFFSET);
@@ -26507,6 +26525,7 @@ module clint_reg_top #(
     addr_hit[588] = (reg_addr == CLINT_MTIMECMP_HIGH288_OFFSET);
     addr_hit[589] = (reg_addr == CLINT_MTIME_LOW_OFFSET);
     addr_hit[590] = (reg_addr == CLINT_MTIME_HIGH_OFFSET);
+    addr_hit[591] = (reg_addr == CLINT_MSIP_CLR_OFFSET);
   end
 
   assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
@@ -27104,7 +27123,8 @@ module clint_reg_top #(
                (addr_hit[587] & (|(CLINT_PERMIT[587] & ~reg_be))) |
                (addr_hit[588] & (|(CLINT_PERMIT[588] & ~reg_be))) |
                (addr_hit[589] & (|(CLINT_PERMIT[589] & ~reg_be))) |
-               (addr_hit[590] & (|(CLINT_PERMIT[590] & ~reg_be)))));
+               (addr_hit[590] & (|(CLINT_PERMIT[590] & ~reg_be))) |
+               (addr_hit[591] & (|(CLINT_PERMIT[591] & ~reg_be)))));
   end
 
   assign msip_0_p_0_we = addr_hit[0] & reg_we & !reg_error;
@@ -29716,6 +29736,9 @@ module clint_reg_top #(
 
   assign mtime_high_we = addr_hit[590] & reg_we & !reg_error;
   assign mtime_high_wd = reg_wdata[31:0];
+
+  assign msip_clr_we = addr_hit[591] & reg_we & !reg_error;
+  assign msip_clr_wd = reg_wdata[31:0];
 
   // Read data return
   always_comb begin
@@ -32362,6 +32385,10 @@ module clint_reg_top #(
 
       addr_hit[590]: begin
         reg_rdata_next[31:0] = mtime_high_qs;
+      end
+
+      addr_hit[591]: begin
+        reg_rdata_next[31:0] = '0;
       end
 
       default: begin

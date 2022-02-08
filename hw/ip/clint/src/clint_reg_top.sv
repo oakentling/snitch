@@ -95,6 +95,8 @@ module clint_reg_top #(
   logic [31:0] mtime_high_qs;
   logic [31:0] mtime_high_wd;
   logic mtime_high_we;
+  logic [31:0] msip_clr_wd;
+  logic msip_clr_we;
 
   // Register instances
 
@@ -115,8 +117,8 @@ module clint_reg_top #(
     .wd     (msip_p_0_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[0].de),
+    .d      (hw2reg.msip[0].d ),
 
     // to internal hardware
     .qe     (),
@@ -141,8 +143,8 @@ module clint_reg_top #(
     .wd     (msip_p_1_wd),
 
     // from internal hardware
-    .de     (1'b0),
-    .d      ('0  ),
+    .de     (hw2reg.msip[1].de),
+    .d      (hw2reg.msip[1].d ),
 
     // to internal hardware
     .qe     (),
@@ -343,9 +345,25 @@ module clint_reg_top #(
   );
 
 
+  // R[msip_clr]: V(True)
+
+  prim_subreg_ext #(
+    .DW    (32)
+  ) u_msip_clr (
+    .re     (1'b0),
+    .we     (msip_clr_we),
+    .wd     (msip_clr_wd),
+    .d      ('0),
+    .qre    (),
+    .qe     (reg2hw.msip_clr.qe),
+    .q      (reg2hw.msip_clr.q ),
+    .qs     ()
+  );
 
 
-  logic [7:0] addr_hit;
+
+
+  logic [8:0] addr_hit;
   always_comb begin
     addr_hit = '0;
     addr_hit[0] = (reg_addr == CLINT_MSIP_OFFSET);
@@ -356,6 +374,7 @@ module clint_reg_top #(
     addr_hit[5] = (reg_addr == CLINT_MTIMECMP_HIGH1_OFFSET);
     addr_hit[6] = (reg_addr == CLINT_MTIME_LOW_OFFSET);
     addr_hit[7] = (reg_addr == CLINT_MTIME_HIGH_OFFSET);
+    addr_hit[8] = (reg_addr == CLINT_MSIP_CLR_OFFSET);
   end
 
   assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
@@ -370,7 +389,8 @@ module clint_reg_top #(
                (addr_hit[4] & (|(CLINT_PERMIT[4] & ~reg_be))) |
                (addr_hit[5] & (|(CLINT_PERMIT[5] & ~reg_be))) |
                (addr_hit[6] & (|(CLINT_PERMIT[6] & ~reg_be))) |
-               (addr_hit[7] & (|(CLINT_PERMIT[7] & ~reg_be)))));
+               (addr_hit[7] & (|(CLINT_PERMIT[7] & ~reg_be))) |
+               (addr_hit[8] & (|(CLINT_PERMIT[8] & ~reg_be)))));
   end
 
   assign msip_p_0_we = addr_hit[0] & reg_we & !reg_error;
@@ -399,6 +419,9 @@ module clint_reg_top #(
 
   assign mtime_high_we = addr_hit[7] & reg_we & !reg_error;
   assign mtime_high_wd = reg_wdata[31:0];
+
+  assign msip_clr_we = addr_hit[8] & reg_we & !reg_error;
+  assign msip_clr_wd = reg_wdata[31:0];
 
   // Read data return
   always_comb begin
@@ -435,6 +458,10 @@ module clint_reg_top #(
 
       addr_hit[7]: begin
         reg_rdata_next[31:0] = mtime_high_qs;
+      end
+
+      addr_hit[8]: begin
+        reg_rdata_next[31:0] = '0;
       end
 
       default: begin

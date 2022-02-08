@@ -26,7 +26,7 @@
         count: "NumCores",
         cname: "MSIP",
         swaccess: "rw",
-        hwaccess: "hro",
+        hwaccess: "hrw",
         fields: [
           { bits: "0", name: "P", desc: "Machine Software Interrupt Pending" }
         ]
@@ -82,5 +82,16 @@
         ]
     },
 % endif
+    {
+        name: "MSIP_CLR",
+        desc: "Clear MSIP register. Writing a value of N clears the interrupt of hart N",
+        hwqe: "true",
+        hwext: "true",
+        swaccess: "wo",
+        hwaccess: "hro",
+        fields: [
+          { bits: "31:0", name: "MSIP_CLR", desc: "Clear MSIP register. Writing a value of N clears the interrupt of hart N" }
+        ]
+    },
   ]
 }
