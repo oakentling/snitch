@@ -1,0 +1,25 @@
+From 1b36ebae86d80a5339452139a4fa04e2a70fbf1f Mon Sep 17 00:00:00 2001
+From: Luca Colagrande <luca.colagrande3@gmail.com>
+Date: Mon, 14 Feb 2022 10:35:10 +0100
+Subject: [PATCH] axi_riscv_atomics: Sign-extend 32b load AMOs
+
+---
+ src/axi_riscv_amos.sv | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/axi_riscv_amos.sv b/src/axi_riscv_amos.sv
+index db4fe32..496700e 100644
+--- a/src/axi_riscv_amos.sv
++++ b/src/axi_riscv_amos.sv
+@@ -868,7 +868,7 @@ module axi_riscv_amos #(
+                     mst_r_ready_o = 1'b0;
+                     // Send R response
+                     slv_r_valid_o = 1'b1;
+-                    slv_r_data_o  = r_data_q;
++                    slv_r_data_o  = op_a | ({AXI_ALU_RATIO*RISCV_WORD_WIDTH{sign_a}} & ~strb_ext);
+                     slv_r_id_o    = id_q;
+                     slv_r_last_o  = 1'b1;
+                     slv_r_resp_o  = r_resp_q;
+-- 
+2.28.0
+

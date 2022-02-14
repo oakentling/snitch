@@ -868,7 +868,7 @@ module axi_riscv_amos #(
                     mst_r_ready_o = 1'b0;
                     // Send R response
                     slv_r_valid_o = 1'b1;
-                    slv_r_data_o  = r_data_q;
+                    slv_r_data_o  = op_a | ({AXI_ALU_RATIO*RISCV_WORD_WIDTH{sign_a}} & ~strb_ext);
                     slv_r_id_o    = id_q;
                     slv_r_last_o  = 1'b1;
                     slv_r_resp_o  = r_resp_q;
