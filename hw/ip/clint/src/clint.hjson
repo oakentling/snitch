@@ -32,6 +32,15 @@
         ]
       }
     },
+    {
+        name: "DUMMY",
+        desc: "Dummy register to have clint_hw2reg_t",
+        swaccess: "rw",
+        hwaccess: "hrw",
+        fields: [
+          { bits: "0:0", name: "DUMMY", desc: "Dummy register to have clint_hw2reg_t" }
+        ]
+    },
     { skipto: "0x4000" },
     {   name: "MTIMECMP_LOW0",
         desc: "Machine Timer Compare",

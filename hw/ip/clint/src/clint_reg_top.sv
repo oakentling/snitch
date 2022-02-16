@@ -74,6 +74,9 @@ module clint_reg_top #(
   logic msip_p_1_qs;
   logic msip_p_1_wd;
   logic msip_p_1_we;
+  logic dummy_qs;
+  logic dummy_wd;
+  logic dummy_we;
   logic [31:0] mtimecmp_low0_qs;
   logic [31:0] mtimecmp_low0_wd;
   logic mtimecmp_low0_we;
@@ -149,6 +152,33 @@ module clint_reg_top #(
     .qs     (msip_p_1_qs)
   );
 
+
+
+  // R[dummy]: V(False)
+
+  prim_subreg #(
+    .DW      (1),
+    .SWACCESS("RW"),
+    .RESVAL  (1'h0)
+  ) u_dummy (
+    .clk_i   (clk_i    ),
+    .rst_ni  (rst_ni  ),
+
+    // from register interface
+    .we     (dummy_we),
+    .wd     (dummy_wd),
+
+    // from internal hardware
+    .de     (hw2reg.dummy.de),
+    .d      (hw2reg.dummy.d ),
+
+    // to internal hardware
+    .qe     (),
+    .q      (reg2hw.dummy.q ),
+
+    // to register interface (read)
+    .qs     (dummy_qs)
+  );
 
 
   // R[mtimecmp_low0]: V(False)
@@ -315,16 +345,17 @@ module clint_reg_top #(
 
 
 
-  logic [6:0] addr_hit;
+  logic [7:0] addr_hit;
   always_comb begin
     addr_hit = '0;
     addr_hit[0] = (reg_addr == CLINT_MSIP_OFFSET);
-    addr_hit[1] = (reg_addr == CLINT_MTIMECMP_LOW0_OFFSET);
-    addr_hit[2] = (reg_addr == CLINT_MTIMECMP_HIGH0_OFFSET);
-    addr_hit[3] = (reg_addr == CLINT_MTIMECMP_LOW1_OFFSET);
-    addr_hit[4] = (reg_addr == CLINT_MTIMECMP_HIGH1_OFFSET);
-    addr_hit[5] = (reg_addr == CLINT_MTIME_LOW_OFFSET);
-    addr_hit[6] = (reg_addr == CLINT_MTIME_HIGH_OFFSET);
+    addr_hit[1] = (reg_addr == CLINT_DUMMY_OFFSET);
+    addr_hit[2] = (reg_addr == CLINT_MTIMECMP_LOW0_OFFSET);
+    addr_hit[3] = (reg_addr == CLINT_MTIMECMP_HIGH0_OFFSET);
+    addr_hit[4] = (reg_addr == CLINT_MTIMECMP_LOW1_OFFSET);
+    addr_hit[5] = (reg_addr == CLINT_MTIMECMP_HIGH1_OFFSET);
+    addr_hit[6] = (reg_addr == CLINT_MTIME_LOW_OFFSET);
+    addr_hit[7] = (reg_addr == CLINT_MTIME_HIGH_OFFSET);
   end
 
   assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
@@ -338,7 +369,8 @@ module clint_reg_top #(
                (addr_hit[3] & (|(CLINT_PERMIT[3] & ~reg_be))) |
                (addr_hit[4] & (|(CLINT_PERMIT[4] & ~reg_be))) |
                (addr_hit[5] & (|(CLINT_PERMIT[5] & ~reg_be))) |
-               (addr_hit[6] & (|(CLINT_PERMIT[6] & ~reg_be)))));
+               (addr_hit[6] & (|(CLINT_PERMIT[6] & ~reg_be))) |
+               (addr_hit[7] & (|(CLINT_PERMIT[7] & ~reg_be)))));
   end
 
   assign msip_p_0_we = addr_hit[0] & reg_we & !reg_error;
@@ -347,22 +379,25 @@ module clint_reg_top #(
   assign msip_p_1_we = addr_hit[0] & reg_we & !reg_error;
   assign msip_p_1_wd = reg_wdata[1];
 
-  assign mtimecmp_low0_we = addr_hit[1] & reg_we & !reg_error;
+  assign dummy_we = addr_hit[1] & reg_we & !reg_error;
+  assign dummy_wd = reg_wdata[0];
+
+  assign mtimecmp_low0_we = addr_hit[2] & reg_we & !reg_error;
   assign mtimecmp_low0_wd = reg_wdata[31:0];
 
-  assign mtimecmp_high0_we = addr_hit[2] & reg_we & !reg_error;
+  assign mtimecmp_high0_we = addr_hit[3] & reg_we & !reg_error;
   assign mtimecmp_high0_wd = reg_wdata[31:0];
 
-  assign mtimecmp_low1_we = addr_hit[3] & reg_we & !reg_error;
+  assign mtimecmp_low1_we = addr_hit[4] & reg_we & !reg_error;
   assign mtimecmp_low1_wd = reg_wdata[31:0];
 
-  assign mtimecmp_high1_we = addr_hit[4] & reg_we & !reg_error;
+  assign mtimecmp_high1_we = addr_hit[5] & reg_we & !reg_error;
   assign mtimecmp_high1_wd = reg_wdata[31:0];
 
-  assign mtime_low_we = addr_hit[5] & reg_we & !reg_error;
+  assign mtime_low_we = addr_hit[6] & reg_we & !reg_error;
   assign mtime_low_wd = reg_wdata[31:0];
 
-  assign mtime_high_we = addr_hit[6] & reg_we & !reg_error;
+  assign mtime_high_we = addr_hit[7] & reg_we & !reg_error;
   assign mtime_high_wd = reg_wdata[31:0];
 
   // Read data return
@@ -375,26 +410,30 @@ module clint_reg_top #(
       end
 
       addr_hit[1]: begin
-        reg_rdata_next[31:0] = mtimecmp_low0_qs;
+        reg_rdata_next[0] = dummy_qs;
       end
 
       addr_hit[2]: begin
-        reg_rdata_next[31:0] = mtimecmp_high0_qs;
+        reg_rdata_next[31:0] = mtimecmp_low0_qs;
       end
 
       addr_hit[3]: begin
-        reg_rdata_next[31:0] = mtimecmp_low1_qs;
+        reg_rdata_next[31:0] = mtimecmp_high0_qs;
       end
 
       addr_hit[4]: begin
-        reg_rdata_next[31:0] = mtimecmp_high1_qs;
+        reg_rdata_next[31:0] = mtimecmp_low1_qs;
       end
 
       addr_hit[5]: begin
-        reg_rdata_next[31:0] = mtime_low_qs;
+        reg_rdata_next[31:0] = mtimecmp_high1_qs;
       end
 
       addr_hit[6]: begin
+        reg_rdata_next[31:0] = mtime_low_qs;
+      end
+
+      addr_hit[7]: begin
         reg_rdata_next[31:0] = mtime_high_qs;
       end
 

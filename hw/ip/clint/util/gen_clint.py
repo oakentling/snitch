@@ -20,6 +20,7 @@ def main():
                         default=sys.stdin,
                         help='input template file')
     parser.add_argument('--cores', '-c', type=int, help='Number of cores', required=True)
+    parser.add_argument('--full', type=str, help='Full CLINT', default='true', choices=['true', 'false'])
 
     args = parser.parse_args()
 
@@ -27,7 +28,7 @@ def main():
     out = StringIO()
 
     reg_tpl = Template(args.input.read())
-    out.write(reg_tpl.render(cores=args.cores))
+    out.write(reg_tpl.render(cores=args.cores, cfg={'clint': {'full': args.full == 'true'}}))
 
     print(out.getvalue())
 

@@ -51,6 +51,7 @@ module clint import clint_reg_pkg::*; #(
     assign ipi_o[${i}] = reg2hw.msip[${i}].q;
 % endfor
 
+% if cfg["clint"]["full"]==True:
     assign mtime_q = {reg2hw.mtime_high.q, reg2hw.mtime_low.q};
 % for i in range(cores):
     assign mtimecmp_q[${i}] = {reg2hw.mtimecmp_high${i}.q, reg2hw.mtimecmp_low${i}.q};
@@ -93,6 +94,7 @@ module clint import clint_reg_pkg::*; #(
         .serial_o  (                )  // left open
     );
 
+% endif
 
 endmodule
 

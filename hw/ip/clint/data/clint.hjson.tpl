@@ -32,7 +32,17 @@
         ]
       }
     },
+    {
+        name: "DUMMY",
+        desc: "Dummy register to have clint_hw2reg_t",
+        swaccess: "rw",
+        hwaccess: "hrw",
+        fields: [
+          { bits: "0:0", name: "DUMMY", desc: "Dummy register to have clint_hw2reg_t" }
+        ]
+    },
     { skipto: "0x4000" },
+% if cfg["clint"]["full"]==True:
 % for i in range(cores):
     {   name: "MTIMECMP_LOW${i}",
         desc: "Machine Timer Compare",
@@ -71,5 +81,6 @@
           { bits: "31:0", name: "MTIME_HIGH", desc: "Machine Time (High)" }
         ]
     },
+% endif
   ]
 }
