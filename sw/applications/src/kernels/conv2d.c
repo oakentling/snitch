@@ -1209,6 +1209,13 @@ void occamy_conv_chw_opt_fp32(kernel_fp32* k) {
             // Output height dimension `k->dim_out_y` first split
             for (h0 = 0; h0 < k->dim_out_y / max_unroll;
                  h0++, h += max_unroll) {
+
+                // SSR address setup and enable
+                snrt_ssr_read(SNRT_SSR_DM0, SNRT_SSR_4D,
+                                (void*)(k->pInBuffer +
+                                        h * k->stride_y * input_h_stride +
+                                        ci * input_ci_stride));
+
                 // Output width dimension `k->dim_out_x`
                 for (uint32_t w = 0; w < k->dim_out_x; w++) {
                     volatile register v2s sum[max_unroll];
@@ -1237,12 +1244,6 @@ void occamy_conv_chw_opt_fp32(kernel_fp32* k) {
                         }
                     }
 
-                    // SSR address setup and enable
-                    snrt_ssr_read(SNRT_SSR_DM0, SNRT_SSR_4D,
-                                  (void*)(k->pInBuffer +
-                                          h * k->stride_y * input_h_stride +
-                                          w * k->stride_x * input_w_stride +
-                                          ci * input_ci_stride));
                     snrt_ssr_enable();
 
                     asm volatile(
