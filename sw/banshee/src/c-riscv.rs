@@ -16,14 +16,9 @@ pub enum Format {
     Bimm12hiBimm12loImm5Rs1(FormatBimm12hiBimm12loImm5Rs1),
     Bimm12hiBimm12loRs1Rs2(FormatBimm12hiBimm12loRs1Rs2),
     FmPredRdRs1Succ(FormatFmPredRdRs1Succ),
-    Imm12Rd(FormatImm12Rd),
-    Imm12RdRmRs1(FormatImm12RdRmRs1),
     Imm12RdRs1(FormatImm12RdRs1),
-    Imm12Rs1(FormatImm12Rs1),
-    Imm12Rs1StaggerMaskStaggerMax(FormatImm12Rs1StaggerMaskStaggerMax),
     Imm12hiImm12loRs1Rs2(FormatImm12hiImm12loRs1Rs2),
     Imm20Rd(FormatImm20Rd),
-    Imm5Rd(FormatImm5Rd),
     Imm5RdRs1(FormatImm5RdRs1),
     Imm6RdRs1(FormatImm6RdRs1),
     Jimm20Rd(FormatJimm20Rd),
@@ -35,8 +30,6 @@ pub enum Format {
     RdRs1Rs2(FormatRdRs1Rs2),
     RdRs1Shamt(FormatRdRs1Shamt),
     RdRs1Shamtw(FormatRdRs1Shamtw),
-    RdRs2(FormatRdRs2),
-    Rs1(FormatRs1),
     Rs1Rs2(FormatRs1Rs2),
 }
 
@@ -52,14 +45,9 @@ impl Format {
             Self::Bimm12hiBimm12loImm5Rs1(x) => x.raw,
             Self::Bimm12hiBimm12loRs1Rs2(x) => x.raw,
             Self::FmPredRdRs1Succ(x) => x.raw,
-            Self::Imm12Rd(x) => x.raw,
-            Self::Imm12RdRmRs1(x) => x.raw,
             Self::Imm12RdRs1(x) => x.raw,
-            Self::Imm12Rs1(x) => x.raw,
-            Self::Imm12Rs1StaggerMaskStaggerMax(x) => x.raw,
             Self::Imm12hiImm12loRs1Rs2(x) => x.raw,
             Self::Imm20Rd(x) => x.raw,
-            Self::Imm5Rd(x) => x.raw,
             Self::Imm5RdRs1(x) => x.raw,
             Self::Imm6RdRs1(x) => x.raw,
             Self::Jimm20Rd(x) => x.raw,
@@ -71,8 +59,6 @@ impl Format {
             Self::RdRs1Rs2(x) => x.raw,
             Self::RdRs1Shamt(x) => x.raw,
             Self::RdRs1Shamtw(x) => x.raw,
-            Self::RdRs2(x) => x.raw,
-            Self::Rs1(x) => x.raw,
             Self::Rs1Rs2(x) => x.raw,
         }
     }
@@ -90,14 +76,9 @@ impl std::fmt::Display for Format {
             Self::Bimm12hiBimm12loImm5Rs1(x) => write!(f, "{}", x),
             Self::Bimm12hiBimm12loRs1Rs2(x) => write!(f, "{}", x),
             Self::FmPredRdRs1Succ(x) => write!(f, "{}", x),
-            Self::Imm12Rd(x) => write!(f, "{}", x),
-            Self::Imm12RdRmRs1(x) => write!(f, "{}", x),
             Self::Imm12RdRs1(x) => write!(f, "{}", x),
-            Self::Imm12Rs1(x) => write!(f, "{}", x),
-            Self::Imm12Rs1StaggerMaskStaggerMax(x) => write!(f, "{}", x),
             Self::Imm12hiImm12loRs1Rs2(x) => write!(f, "{}", x),
             Self::Imm20Rd(x) => write!(f, "{}", x),
-            Self::Imm5Rd(x) => write!(f, "{}", x),
             Self::Imm5RdRs1(x) => write!(f, "{}", x),
             Self::Imm6RdRs1(x) => write!(f, "{}", x),
             Self::Jimm20Rd(x) => write!(f, "{}", x),
@@ -109,8 +90,6 @@ impl std::fmt::Display for Format {
             Self::RdRs1Rs2(x) => write!(f, "{}", x),
             Self::RdRs1Shamt(x) => write!(f, "{}", x),
             Self::RdRs1Shamtw(x) => write!(f, "{}", x),
-            Self::RdRs2(x) => write!(f, "{}", x),
-            Self::Rs1(x) => write!(f, "{}", x),
             Self::Rs1Rs2(x) => write!(f, "{}", x),
         }
     }
@@ -568,86 +547,6 @@ impl std::fmt::Display for OpcodeFmPredRdRs1Succ {
     }
 }
 
-/// The `Imm12Rd` instruction format.
-#[derive(Debug, Copy, Clone)]
-pub struct FormatImm12Rd {
-    pub op: OpcodeImm12Rd,
-    pub raw: u32,
-    pub imm12: u32,
-    pub rd: u32,
-}
-
-impl FormatImm12Rd {
-    pub fn imm(&self) -> i32 {
-        ((self.imm12 << 20) as i32) >> 20
-    }
-}
-
-/// Opcodes with the `Imm12Rd` instruction format.
-#[derive(Debug, Copy, Clone)]
-pub enum OpcodeImm12Rd {
-    Scfgri,
-}
-
-impl std::fmt::Display for FormatImm12Rd {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "{}", self.op)?;
-        write!(f, " imm12={:x}", self.imm12)?;
-        write!(f, " rd={:x}", self.rd)?;
-        Ok(())
-    }
-}
-
-impl std::fmt::Display for OpcodeImm12Rd {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        match self {
-            Self::Scfgri => write!(f, "scfgri"),
-        }
-    }
-}
-
-/// The `Imm12RdRmRs1` instruction format.
-#[derive(Debug, Copy, Clone)]
-pub struct FormatImm12RdRmRs1 {
-    pub op: OpcodeImm12RdRmRs1,
-    pub raw: u32,
-    pub imm12: u32,
-    pub rd: u32,
-    pub rm: u32,
-    pub rs1: u32,
-}
-
-impl FormatImm12RdRmRs1 {
-    pub fn imm(&self) -> i32 {
-        ((self.imm12 << 20) as i32) >> 20
-    }
-}
-
-/// Opcodes with the `Imm12RdRmRs1` instruction format.
-#[derive(Debug, Copy, Clone)]
-pub enum OpcodeImm12RdRmRs1 {
-    Irep,
-}
-
-impl std::fmt::Display for FormatImm12RdRmRs1 {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "{}", self.op)?;
-        write!(f, " imm12={:x}", self.imm12)?;
-        write!(f, " rd={:x}", self.rd)?;
-        write!(f, " rm={:x}", self.rm)?;
-        write!(f, " rs1={:x}", self.rs1)?;
-        Ok(())
-    }
-}
-
-impl std::fmt::Display for OpcodeImm12RdRmRs1 {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        match self {
-            Self::Irep => write!(f, "irep"),
-        }
-    }
-}
-
 /// The `Imm12RdRs1` instruction format.
 #[derive(Debug, Copy, Clone)]
 pub struct FormatImm12RdRs1 {
@@ -746,88 +645,6 @@ impl std::fmt::Display for OpcodeImm12RdRs1 {
             Self::PLwIrpost => write!(f, "p.lw.irpost"),
             Self::Flh => write!(f, "flh"),
             Self::Flb => write!(f, "flb"),
-        }
-    }
-}
-
-/// The `Imm12Rs1` instruction format.
-#[derive(Debug, Copy, Clone)]
-pub struct FormatImm12Rs1 {
-    pub op: OpcodeImm12Rs1,
-    pub raw: u32,
-    pub imm12: u32,
-    pub rs1: u32,
-}
-
-impl FormatImm12Rs1 {
-    pub fn imm(&self) -> i32 {
-        ((self.imm12 << 20) as i32) >> 20
-    }
-}
-
-/// Opcodes with the `Imm12Rs1` instruction format.
-#[derive(Debug, Copy, Clone)]
-pub enum OpcodeImm12Rs1 {
-    Scfgwi,
-}
-
-impl std::fmt::Display for FormatImm12Rs1 {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "{}", self.op)?;
-        write!(f, " imm12={:x}", self.imm12)?;
-        write!(f, " rs1={:x}", self.rs1)?;
-        Ok(())
-    }
-}
-
-impl std::fmt::Display for OpcodeImm12Rs1 {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        match self {
-            Self::Scfgwi => write!(f, "scfgwi"),
-        }
-    }
-}
-
-/// The `Imm12Rs1StaggerMaskStaggerMax` instruction format.
-#[derive(Debug, Copy, Clone)]
-pub struct FormatImm12Rs1StaggerMaskStaggerMax {
-    pub op: OpcodeImm12Rs1StaggerMaskStaggerMax,
-    pub raw: u32,
-    pub imm12: u32,
-    pub rs1: u32,
-    pub stagger_mask: u32,
-    pub stagger_max: u32,
-}
-
-impl FormatImm12Rs1StaggerMaskStaggerMax {
-    pub fn imm(&self) -> i32 {
-        ((self.imm12 << 20) as i32) >> 20
-    }
-}
-
-/// Opcodes with the `Imm12Rs1StaggerMaskStaggerMax` instruction format.
-#[derive(Debug, Copy, Clone)]
-pub enum OpcodeImm12Rs1StaggerMaskStaggerMax {
-    FrepO,
-    FrepI,
-}
-
-impl std::fmt::Display for FormatImm12Rs1StaggerMaskStaggerMax {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "{}", self.op)?;
-        write!(f, " imm12={:x}", self.imm12)?;
-        write!(f, " rs1={:x}", self.rs1)?;
-        write!(f, " stagger_mask={:x}", self.stagger_mask)?;
-        write!(f, " stagger_max={:x}", self.stagger_max)?;
-        Ok(())
-    }
-}
-
-impl std::fmt::Display for OpcodeImm12Rs1StaggerMaskStaggerMax {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        match self {
-            Self::FrepO => write!(f, "frep.o"),
-            Self::FrepI => write!(f, "frep.i"),
         }
     }
 }
@@ -933,40 +750,6 @@ impl std::fmt::Display for OpcodeImm20Rd {
     }
 }
 
-/// The `Imm5Rd` instruction format.
-#[derive(Debug, Copy, Clone)]
-pub struct FormatImm5Rd {
-    pub op: OpcodeImm5Rd,
-    pub raw: u32,
-    pub imm5: u32,
-    pub rd: u32,
-}
-
-impl FormatImm5Rd {}
-
-/// Opcodes with the `Imm5Rd` instruction format.
-#[derive(Debug, Copy, Clone)]
-pub enum OpcodeImm5Rd {
-    Dmstati,
-}
-
-impl std::fmt::Display for FormatImm5Rd {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "{}", self.op)?;
-        write!(f, " imm5={:x}", self.imm5)?;
-        write!(f, " rd={:x}", self.rd)?;
-        Ok(())
-    }
-}
-
-impl std::fmt::Display for OpcodeImm5Rd {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        match self {
-            Self::Dmstati => write!(f, "dmstati"),
-        }
-    }
-}
-
 /// The `Imm5RdRs1` instruction format.
 #[derive(Debug, Copy, Clone)]
 pub struct FormatImm5RdRs1 {
@@ -984,7 +767,6 @@ impl FormatImm5RdRs1 {}
 pub enum OpcodeImm5RdRs1 {
     PClip,
     PClipu,
-    Dmcpyi,
 }
 
 impl std::fmt::Display for FormatImm5RdRs1 {
@@ -1002,7 +784,6 @@ impl std::fmt::Display for OpcodeImm5RdRs1 {
         match self {
             Self::PClip => write!(f, "p.clip"),
             Self::PClipu => write!(f, "p.clipu"),
-            Self::Dmcpyi => write!(f, "dmcpyi"),
         }
     }
 }
@@ -1975,7 +1756,6 @@ pub enum OpcodeRdRs1Rs2 {
     PvPackH,
     PvPackhiB,
     PvPackloB,
-    Dmcpy,
     FsgnjH,
     FsgnjnH,
     FsgnjxH,
@@ -2345,7 +2125,6 @@ impl std::fmt::Display for OpcodeRdRs1Rs2 {
             Self::PvPackH => write!(f, "pv.pack.h"),
             Self::PvPackhiB => write!(f, "pv.packhi.b"),
             Self::PvPackloB => write!(f, "pv.packlo.b"),
-            Self::Dmcpy => write!(f, "dmcpy"),
             Self::FsgnjH => write!(f, "fsgnj.h"),
             Self::FsgnjnH => write!(f, "fsgnjn.h"),
             Self::FsgnjxH => write!(f, "fsgnjx.h"),
@@ -2572,74 +2351,6 @@ impl std::fmt::Display for OpcodeRdRs1Shamtw {
     }
 }
 
-/// The `RdRs2` instruction format.
-#[derive(Debug, Copy, Clone)]
-pub struct FormatRdRs2 {
-    pub op: OpcodeRdRs2,
-    pub raw: u32,
-    pub rd: u32,
-    pub rs2: u32,
-}
-
-impl FormatRdRs2 {}
-
-/// Opcodes with the `RdRs2` instruction format.
-#[derive(Debug, Copy, Clone)]
-pub enum OpcodeRdRs2 {
-    Dmstat,
-    Scfgr,
-}
-
-impl std::fmt::Display for FormatRdRs2 {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "{}", self.op)?;
-        write!(f, " rd={:x}", self.rd)?;
-        write!(f, " rs2={:x}", self.rs2)?;
-        Ok(())
-    }
-}
-
-impl std::fmt::Display for OpcodeRdRs2 {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        match self {
-            Self::Dmstat => write!(f, "dmstat"),
-            Self::Scfgr => write!(f, "scfgr"),
-        }
-    }
-}
-
-/// The `Rs1` instruction format.
-#[derive(Debug, Copy, Clone)]
-pub struct FormatRs1 {
-    pub op: OpcodeRs1,
-    pub raw: u32,
-    pub rs1: u32,
-}
-
-impl FormatRs1 {}
-
-/// Opcodes with the `Rs1` instruction format.
-#[derive(Debug, Copy, Clone)]
-pub enum OpcodeRs1 {
-    Dmrep,
-}
-
-impl std::fmt::Display for FormatRs1 {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "{}", self.op)?;
-        write!(f, " rs1={:x}", self.rs1)?;
-        Ok(())
-    }
-}
-
-impl std::fmt::Display for OpcodeRs1 {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        match self {
-            Self::Dmrep => write!(f, "dmrep"),
-        }
-    }
-}
-
 /// The `Rs1Rs2` instruction format.
 #[derive(Debug, Copy, Clone)]
 pub struct FormatRs1Rs2 {
@@ -2661,10 +2372,6 @@ pub enum OpcodeRs1Rs2 {
     HsvW,
     HsvD,
     SfenceVma,
-    Dmsrc,
-    Dmdst,
-    Dmstr,
-    Scfgw,
 }
 
 impl std::fmt::Display for FormatRs1Rs2 {
@@ -2686,10 +2393,6 @@ impl std::fmt::Display for OpcodeRs1Rs2 {
             Self::HsvW => write!(f, "hsv.w"),
             Self::HsvD => write!(f, "hsv.d"),
             Self::SfenceVma => write!(f, "sfence.vma"),
-            Self::Dmsrc => write!(f, "dmsrc"),
-            Self::Dmdst => write!(f, "dmdst"),
-            Self::Dmstr => write!(f, "dmstr"),
-            Self::Scfgw => write!(f, "scfgw"),
         }
     }
 }
@@ -2700,22 +2403,6 @@ pub fn parse_u32(raw: u32) -> Format {
         0x6f => return parse_jimm20_rd(OpcodeJimm20Rd::Jal, raw),
         0x37 => return parse_imm20_rd(OpcodeImm20Rd::Lui, raw),
         0x17 => return parse_imm20_rd(OpcodeImm20Rd::Auipc, raw),
-        0x3f => return parse_imm12_rd_rm_rs1(OpcodeImm12RdRmRs1::Irep, raw),
-        _ => (),
-    }
-    match raw & 0xff {
-        0x8b => {
-            return parse_imm12_rs1_stagger_mask_stagger_max(
-                OpcodeImm12Rs1StaggerMaskStaggerMax::FrepO,
-                raw,
-            )
-        }
-        0xb => {
-            return parse_imm12_rs1_stagger_mask_stagger_max(
-                OpcodeImm12Rs1StaggerMaskStaggerMax::FrepI,
-                raw,
-            )
-        }
         _ => (),
     }
     match raw & 0x707f {
@@ -2764,14 +2451,18 @@ pub fn parse_u32(raw: u32) -> Format {
         0x3063 => {
             return parse_bimm12hi_bimm12lo_imm5_rs1(OpcodeBimm12hiBimm12loImm5Rs1::PBneimm, raw)
         }
+        0xb => return parse_imm12_rd_rs1(OpcodeImm12RdRs1::PLbIrpost, raw),
+        0x400b => return parse_imm12_rd_rs1(OpcodeImm12RdRs1::PLbuIrpost, raw),
+        0x100b => return parse_imm12_rd_rs1(OpcodeImm12RdRs1::PLhIrpost, raw),
+        0x500b => return parse_imm12_rd_rs1(OpcodeImm12RdRs1::PLhuIrpost, raw),
+        0x200b => return parse_imm12_rd_rs1(OpcodeImm12RdRs1::PLwIrpost, raw),
+        0x2b => return parse_imm12hi_imm12lo_rs1_rs2(OpcodeImm12hiImm12loRs1Rs2::PSbIrpost, raw),
+        0x102b => return parse_imm12hi_imm12lo_rs1_rs2(OpcodeImm12hiImm12loRs1Rs2::PShIrpost, raw),
+        0x202b => return parse_imm12hi_imm12lo_rs1_rs2(OpcodeImm12hiImm12loRs1Rs2::PSwIrpost, raw),
         0x1007 => return parse_imm12_rd_rs1(OpcodeImm12RdRs1::Flh, raw),
         0x1027 => return parse_imm12hi_imm12lo_rs1_rs2(OpcodeImm12hiImm12loRs1Rs2::Fsh, raw),
         0x7 => return parse_imm12_rd_rs1(OpcodeImm12RdRs1::Flb, raw),
         0x27 => return parse_imm12hi_imm12lo_rs1_rs2(OpcodeImm12hiImm12loRs1Rs2::Fsb, raw),
-        _ => (),
-    }
-    match raw & 0x7fff {
-        0x202b => return parse_imm12_rs1(OpcodeImm12Rs1::Scfgwi, raw),
         _ => (),
     }
     match raw & 0xe003 {
@@ -2816,10 +2507,6 @@ pub fn parse_u32(raw: u32) -> Format {
         0x8c61 => return parse_unit(OpcodeUnit::CAnd, raw),
         0x9c01 => return parse_unit(OpcodeUnit::CSubw, raw),
         0x9c21 => return parse_unit(OpcodeUnit::CAddw, raw),
-        _ => (),
-    }
-    match raw & 0xff07f {
-        0x102b => return parse_imm12_rd(OpcodeImm12Rd::Scfgri, raw),
         _ => (),
     }
     match raw & 0x600007f {
@@ -3051,6 +2738,22 @@ pub fn parse_u32(raw: u32) -> Format {
         0x4005033 => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::PMinu, raw),
         0x4006033 => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::PMax, raw),
         0x4007033 => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::PMaxu, raw),
+        0x700b => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::PLbRrpost, raw),
+        0x4000700b => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::PLbuRrpost, raw),
+        0x1000700b => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::PLhRrpost, raw),
+        0x5000700b => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::PLhuRrpost, raw),
+        0x2000700b => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::PLwRrpost, raw),
+        0x7003 => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::PLbRr, raw),
+        0x40007003 => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::PLbuRr, raw),
+        0x10007003 => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::PLhRr, raw),
+        0x50007003 => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::PLhuRr, raw),
+        0x20007003 => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::PLwRr, raw),
+        0x402b => return parse_prs3_rs1_rs2(OpcodePrs3Rs1Rs2::PSbRrpost, raw),
+        0x502b => return parse_prs3_rs1_rs2(OpcodePrs3Rs1Rs2::PShRrpost, raw),
+        0x602b => return parse_prs3_rs1_rs2(OpcodePrs3Rs1Rs2::PSwRrpost, raw),
+        0x4023 => return parse_prs3_rs1_rs2(OpcodePrs3Rs1Rs2::PSbRr, raw),
+        0x5023 => return parse_prs3_rs1_rs2(OpcodePrs3Rs1Rs2::PShRr, raw),
+        0x6023 => return parse_prs3_rs1_rs2(OpcodePrs3Rs1Rs2::PSwRr, raw),
         0x4002033 => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::PSlet, raw),
         0x4003033 => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::PSletu, raw),
         0x57 => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::PvAddH, raw),
@@ -3187,8 +2890,6 @@ pub fn parse_u32(raw: u32) -> Format {
         0xd2000057 => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::PvPackH, raw),
         0xd8001057 => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::PvPackhiB, raw),
         0xe0001057 => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::PvPackloB, raw),
-        0x400002b => return parse_imm5_rd_rs1(OpcodeImm5RdRs1::Dmcpyi, raw),
-        0x600002b => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::Dmcpy, raw),
         0x24000053 => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::FsgnjH, raw),
         0x24001053 => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::FsgnjnH, raw),
         0x24002053 => return parse_rd_rs1_rs2(OpcodeRdRs1Rs2::FsgnjxH, raw),
@@ -3341,16 +3042,6 @@ pub fn parse_u32(raw: u32) -> Format {
         0x6a004073 => return parse_rs1_rs2(OpcodeRs1Rs2::HsvW, raw),
         0x6e004073 => return parse_rs1_rs2(OpcodeRs1Rs2::HsvD, raw),
         0x12000073 => return parse_rs1_rs2(OpcodeRs1Rs2::SfenceVma, raw),
-        0x2b => return parse_rs1_rs2(OpcodeRs1Rs2::Dmsrc, raw),
-        0x200002b => return parse_rs1_rs2(OpcodeRs1Rs2::Dmdst, raw),
-        0xc00002b => return parse_rs1_rs2(OpcodeRs1Rs2::Dmstr, raw),
-        0x20ab => return parse_rs1_rs2(OpcodeRs1Rs2::Scfgw, raw),
-        _ => (),
-    }
-    match raw & 0xfe0ff07f {
-        0x800002b => return parse_imm5_rd(OpcodeImm5Rd::Dmstati, raw),
-        0xa00002b => return parse_rd_rs2(OpcodeRdRs2::Dmstat, raw),
-        0x902b => return parse_rd_rs2(OpcodeRdRs2::Scfgr, raw),
         _ => (),
     }
     match raw & 0xfff0007f {
@@ -3489,10 +3180,6 @@ pub fn parse_u32(raw: u32) -> Format {
         0xaf702033 => return parse_rd_rs1(OpcodeRdRs1::VfnsumexHB, raw),
         _ => (),
     }
-    match raw & 0xfff07fff {
-        0xe00002b => return parse_rs1(OpcodeRs1::Dmrep, raw),
-        _ => (),
-    }
     match raw & 0xffffffff {
         0x73 => return parse_unit(OpcodeUnit::Ecall, raw),
         0x100073 => return parse_unit(OpcodeUnit::Ebreak, raw),
@@ -3603,28 +3290,6 @@ pub fn parse_fm_pred_rd_rs1_succ(op: OpcodeFmPredRdRs1Succ, raw: u32) -> Format 
     })
 }
 
-/// Parse an instruction with the `Imm12Rd` format.
-pub fn parse_imm12_rd(op: OpcodeImm12Rd, raw: u32) -> Format {
-    Format::Imm12Rd(FormatImm12Rd {
-        op,
-        raw,
-        imm12: (raw >> 20) & 0xfff,
-        rd: (raw >> 7) & 0x1f,
-    })
-}
-
-/// Parse an instruction with the `Imm12RdRmRs1` format.
-pub fn parse_imm12_rd_rm_rs1(op: OpcodeImm12RdRmRs1, raw: u32) -> Format {
-    Format::Imm12RdRmRs1(FormatImm12RdRmRs1 {
-        op,
-        raw,
-        imm12: (raw >> 20) & 0xfff,
-        rd: (raw >> 7) & 0x1f,
-        rm: (raw >> 12) & 0x7,
-        rs1: (raw >> 15) & 0x1f,
-    })
-}
-
 /// Parse an instruction with the `Imm12RdRs1` format.
 pub fn parse_imm12_rd_rs1(op: OpcodeImm12RdRs1, raw: u32) -> Format {
     Format::Imm12RdRs1(FormatImm12RdRs1 {
@@ -3633,31 +3298,6 @@ pub fn parse_imm12_rd_rs1(op: OpcodeImm12RdRs1, raw: u32) -> Format {
         imm12: (raw >> 20) & 0xfff,
         rd: (raw >> 7) & 0x1f,
         rs1: (raw >> 15) & 0x1f,
-    })
-}
-
-/// Parse an instruction with the `Imm12Rs1` format.
-pub fn parse_imm12_rs1(op: OpcodeImm12Rs1, raw: u32) -> Format {
-    Format::Imm12Rs1(FormatImm12Rs1 {
-        op,
-        raw,
-        imm12: (raw >> 20) & 0xfff,
-        rs1: (raw >> 15) & 0x1f,
-    })
-}
-
-/// Parse an instruction with the `Imm12Rs1StaggerMaskStaggerMax` format.
-pub fn parse_imm12_rs1_stagger_mask_stagger_max(
-    op: OpcodeImm12Rs1StaggerMaskStaggerMax,
-    raw: u32,
-) -> Format {
-    Format::Imm12Rs1StaggerMaskStaggerMax(FormatImm12Rs1StaggerMaskStaggerMax {
-        op,
-        raw,
-        imm12: (raw >> 20) & 0xfff,
-        rs1: (raw >> 15) & 0x1f,
-        stagger_mask: (raw >> 8) & 0xf,
-        stagger_max: (raw >> 12) & 0x7,
     })
 }
 
@@ -3679,16 +3319,6 @@ pub fn parse_imm20_rd(op: OpcodeImm20Rd, raw: u32) -> Format {
         op,
         raw,
         imm20: (raw >> 12) & 0xfffff,
-        rd: (raw >> 7) & 0x1f,
-    })
-}
-
-/// Parse an instruction with the `Imm5Rd` format.
-pub fn parse_imm5_rd(op: OpcodeImm5Rd, raw: u32) -> Format {
-    Format::Imm5Rd(FormatImm5Rd {
-        op,
-        raw,
-        imm5: (raw >> 20) & 0x1f,
         rd: (raw >> 7) & 0x1f,
     })
 }
@@ -3815,25 +3445,6 @@ pub fn parse_rd_rs1_shamtw(op: OpcodeRdRs1Shamtw, raw: u32) -> Format {
     })
 }
 
-/// Parse an instruction with the `RdRs2` format.
-pub fn parse_rd_rs2(op: OpcodeRdRs2, raw: u32) -> Format {
-    Format::RdRs2(FormatRdRs2 {
-        op,
-        raw,
-        rd: (raw >> 7) & 0x1f,
-        rs2: (raw >> 20) & 0x1f,
-    })
-}
-
-/// Parse an instruction with the `Rs1` format.
-pub fn parse_rs1(op: OpcodeRs1, raw: u32) -> Format {
-    Format::Rs1(FormatRs1 {
-        op,
-        raw,
-        rs1: (raw >> 15) & 0x1f,
-    })
-}
-
 /// Parse an instruction with the `Rs1Rs2` format.
 pub fn parse_rs1_rs2(op: OpcodeRs1Rs2, raw: u32) -> Format {
     Format::Rs1Rs2(FormatRs1Rs2 {
@@ -3855,14 +3466,9 @@ pub fn inst_to_string(raw: Format) -> String {
         Format::Bimm12hiBimm12loImm5Rs1(x) => x.op.to_string(),
         Format::Bimm12hiBimm12loRs1Rs2(x) => x.op.to_string(),
         Format::FmPredRdRs1Succ(x) => x.op.to_string(),
-        Format::Imm12Rd(x) => x.op.to_string(),
-        Format::Imm12RdRmRs1(x) => x.op.to_string(),
         Format::Imm12RdRs1(x) => x.op.to_string(),
-        Format::Imm12Rs1(x) => x.op.to_string(),
-        Format::Imm12Rs1StaggerMaskStaggerMax(x) => x.op.to_string(),
         Format::Imm12hiImm12loRs1Rs2(x) => x.op.to_string(),
         Format::Imm20Rd(x) => x.op.to_string(),
-        Format::Imm5Rd(x) => x.op.to_string(),
         Format::Imm5RdRs1(x) => x.op.to_string(),
         Format::Imm6RdRs1(x) => x.op.to_string(),
         Format::Jimm20Rd(x) => x.op.to_string(),
@@ -3874,8 +3480,6 @@ pub fn inst_to_string(raw: Format) -> String {
         Format::RdRs1Rs2(x) => x.op.to_string(),
         Format::RdRs1Shamt(x) => x.op.to_string(),
         Format::RdRs1Shamtw(x) => x.op.to_string(),
-        Format::RdRs2(x) => x.op.to_string(),
-        Format::Rs1(x) => x.op.to_string(),
         Format::Rs1Rs2(x) => x.op.to_string(),
         _ => "Unsupported instruction format".to_string(),
     }
@@ -3968,10 +3572,6 @@ pub struct Latency {
     bgeu: u8,
     // Format::FmPredRdRs1Succ
     fence: u8,
-    // Format::Imm12Rd
-    scfgri: u8,
-    // Format::Imm12RdRmRs1
-    irep: u8,
     // Format::Imm12RdRs1
     jalr: u8,
     addi: u8,
@@ -4005,11 +3605,6 @@ pub struct Latency {
     p_lw_irpost: u8,
     flh: u8,
     flb: u8,
-    // Format::Imm12Rs1
-    scfgwi: u8,
-    // Format::Imm12Rs1StaggerMaskStaggerMax
-    frep_o: u8,
-    frep_i: u8,
     // Format::Imm12hiImm12loRs1Rs2
     sb: u8,
     sh: u8,
@@ -4026,12 +3621,9 @@ pub struct Latency {
     // Format::Imm20Rd
     lui: u8,
     auipc: u8,
-    // Format::Imm5Rd
-    dmstati: u8,
     // Format::Imm5RdRs1
     p_clip: u8,
     p_clipu: u8,
-    dmcpyi: u8,
     // Format::Imm6RdRs1
     pv_add_sci_h: u8,
     pv_add_sci_b: u8,
@@ -4496,7 +4088,6 @@ pub struct Latency {
     pv_pack_h: u8,
     pv_packhi_b: u8,
     pv_packlo_b: u8,
-    dmcpy: u8,
     fsgnj_h: u8,
     fsgnjn_h: u8,
     fsgnjx_h: u8,
@@ -4647,11 +4238,6 @@ pub struct Latency {
     slliw: u8,
     srliw: u8,
     sraiw: u8,
-    // Format::RdRs2
-    dmstat: u8,
-    scfgr: u8,
-    // Format::Rs1
-    dmrep: u8,
     // Format::Rs1Rs2
     hfence_vvma: u8,
     hfence_gvma: u8,
@@ -4660,10 +4246,6 @@ pub struct Latency {
     hsv_w: u8,
     hsv_d: u8,
     sfence_vma: u8,
-    dmsrc: u8,
-    dmdst: u8,
-    dmstr: u8,
-    scfgw: u8,
 }
 
 /// Struct to store the latency of each instruction.
@@ -4747,8 +4329,6 @@ impl Default for Latency {
             bltu: 1,
             bgeu: 1,
             fence: 1,
-            scfgri: 1,
-            irep: 1,
             jalr: 1,
             addi: 1,
             slti: 1,
@@ -4781,9 +4361,6 @@ impl Default for Latency {
             p_lw_irpost: 1,
             flh: 1,
             flb: 1,
-            scfgwi: 1,
-            frep_o: 1,
-            frep_i: 1,
             sb: 1,
             sh: 1,
             sw: 1,
@@ -4798,10 +4375,8 @@ impl Default for Latency {
             fsb: 1,
             lui: 1,
             auipc: 1,
-            dmstati: 1,
             p_clip: 1,
             p_clipu: 1,
-            dmcpyi: 1,
             pv_add_sci_h: 1,
             pv_add_sci_b: 1,
             pv_sub_sci_h: 1,
@@ -5258,7 +4833,6 @@ impl Default for Latency {
             pv_pack_h: 1,
             pv_packhi_b: 1,
             pv_packlo_b: 1,
-            dmcpy: 1,
             fsgnj_h: 1,
             fsgnjn_h: 1,
             fsgnjx_h: 1,
@@ -5407,9 +4981,6 @@ impl Default for Latency {
             slliw: 1,
             srliw: 1,
             sraiw: 1,
-            dmstat: 1,
-            scfgr: 1,
-            dmrep: 1,
             hfence_vvma: 1,
             hfence_gvma: 1,
             hsv_b: 1,
@@ -5417,10 +4988,6 @@ impl Default for Latency {
             hsv_w: 1,
             hsv_d: 1,
             sfence_vma: 1,
-            dmsrc: 1,
-            dmdst: 1,
-            dmstr: 1,
-            scfgw: 1,
         }
     }
 }
