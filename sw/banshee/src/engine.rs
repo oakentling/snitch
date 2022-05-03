@@ -143,7 +143,7 @@ impl Engine {
                     section.shdr.addr + section.shdr.size
                 );
                 for (addr, inst) in tran.instructions(section) {
-                    trace!("  - 0x{:x}: {}", addr, inst);
+                    // trace!("  - 0x{:x}: {}", addr, inst);
                 }
             }
 
@@ -226,7 +226,7 @@ impl Engine {
                         .map(|(offset, mut value)| {
                             let addr = section.shdr.addr + offset as u64 * 4;
                             let value = value.read_u32::<LittleEndian>().unwrap_or(0);
-                            trace!("  - 0x{:x} = 0x{:x}", addr, value);
+                            // trace!("  - 0x{:x} = 0x{:x}", addr, value);
                             (addr, value)
                         }),
                 );
